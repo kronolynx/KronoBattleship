@@ -1,0 +1,12 @@
+﻿@model IEnumerable<KronoBattleship.Models.User>
+@{
+    ViewBag.Title = "Welcome";
+}
+
+
+<div class="row">
+    @foreach (var user in Model)
+    {
+        <p>@user.Email</p>
+    }
+</div>
