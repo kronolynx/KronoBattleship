@@ -78,8 +78,17 @@ namespace KronoBattleship.Controllers
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var context = new ApplicationDbContext(); 
             // as I changed the default username I had to find the user and pass it to the manager
-            var user = context.Users.Where(u => u.Email == model.Email).First();
-            var result = await SignInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, shouldLockout: false);
+            // TODO fix if user doesn't exist, at the moment getting an error 
+            var user = context.Users.Where(u => u.Email == model.Email).FirstOrDefault();
+            SignInStatus result;
+            if (user == null)
+            {
+                result = SignInStatus.Failure;
+            }else
+            {
+                result = await SignInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, shouldLockout: false);
+
+            }
             switch (result)
             {
                 case SignInStatus.Success:

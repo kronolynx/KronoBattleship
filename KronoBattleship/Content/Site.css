@@ -27,7 +27,7 @@ textarea {
 /* from sass to css site */
 
 body {
-  background-image: asset_data_url("bg.png");
+  background-image: url("Images/bg.png");
   background-repeat: repeat;
 }
 
@@ -79,13 +79,13 @@ body {
 .end-game .gameover {
   width: 496px;
   height: 275px;
-  background-image: asset_data_url("gameover.png");
+  background-image: url("Images/gameover.png");
   background-repeat: no-repeat;
 }
 .end-game .winner {
   width: 413px;
   height: 346px;
-  background-image: asset-data-url("medal.png");
+  background-image: url("Images/medal.png");
   background-repeat: no-repeat;
 }
 
@@ -371,7 +371,7 @@ body {
   width: 400px;
   height: 400px;
   margin: 7px;
-  background-image: asset-data-url("water.jpg");
+  background-image: url("Images/water.jpg");
   background-size: cover;
   background-position: 0px 0px;
   background-repeat: repeat-x;
@@ -404,7 +404,7 @@ body {
   padding: 35px;
   border: solid 1px gray;
   border-radius: 6px;
-  background-image: asset-data-url("water.jpg");
+  background-image: url("Images/water.jpg");
   background-size: cover;
   background-position: 0px 0px;
   background-repeat: repeat-x;
@@ -423,7 +423,7 @@ body {
 /** 5 cells **/
 #aircraft {
   width: 200px;
-  background: asset-data-url("shipLong.png");
+  background: url("Images/shipLong.png");
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;
@@ -432,7 +432,7 @@ body {
 #aircraftV {
   height: 200px;
   width: 40px;
-  background: asset-data-url("shipLongV.png");
+  background: url("Images/shipLongV.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: 0;
@@ -441,7 +441,7 @@ body {
 /** 3 cells **/
 #cruiser1 {
   width: 120px;
-  background: asset-data-url("ship3.png");
+  background: url("Images/ship3.png");
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;
@@ -450,7 +450,7 @@ body {
 #cruiser1V {
   height: 120px;
   width: 40px;
-  background: asset-data-url("ship3v.png");
+  background: url("Images/ship3v.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: 0;
@@ -459,7 +459,7 @@ body {
 /** 3 cells **/
 #cruiser2 {
   width: 120px;
-  background: asset-data-url("ship1.png");
+  background: url("Images/ship1.png");
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;
@@ -468,7 +468,7 @@ body {
 #cruiser2V {
   height: 120px;
   width: 40px;
-  background: asset-data-url("ship1v.png");
+  background: url("Images/ship1v.png");
   background-repeat: no-repeat;
   background-position: 0;
   background-size: contain;
@@ -477,7 +477,7 @@ body {
 /** 2 cells **/
 #destroyer1 {
   width: 79px;
-  background: asset-data-url("ship2.png");
+  background: url("Images/ship2.png");
   background-repeat: no-repeat;
   background-position: 0;
   background-size: contain;
@@ -486,7 +486,7 @@ body {
 #destroyer1V {
   height: 79px;
   width: 40px;
-  background: asset-data-url("ship2v.png");
+  background: url("Images/ship2v.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: 0;
@@ -494,7 +494,7 @@ body {
 
 #destroyer2 {
   width: 79px;
-  background: asset-data-url("ship4.png");
+  background: url("Images/ship4.png");
   background-repeat: no-repeat;
   background-position: 0;
   background-size: contain;
@@ -503,7 +503,7 @@ body {
 #destroyer2V {
   height: 79px;
   width: 40px;
-  background: asset-data-url("ship4v.png");
+  background: url("Images/ship4v.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: 0;
@@ -521,7 +521,7 @@ body {
   margin-left: 10px;
   height: 24px;
   width: 24px;
-  background-image: asset_data_url("explosion.gif");
+  background-image: url("Images/explosion.gif");
   background-size: contain;
   z-index: 1 !important;
 }

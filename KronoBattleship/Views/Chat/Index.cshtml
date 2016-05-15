@@ -21,3 +21,50 @@
         <!-- Chat goes here -->
     </div>
 </div>
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="signalr/hubs"></script>
+    <script type="text/javascript">
+        var groupJoined = "";
+        $(function () {
+            // declare a proxy to reference hub
+            var connectionStatus = $.connection.connectionHub;
+            //connectionStatus.state.UserName = $('#name').val();
+
+            connectionStatus.client.login = function (id) {
+                setOnline(id);
+            }
+            connectionStatus.client.logout = function (id) {
+                setOffline(id);
+            }
+
+            connectionStatus.client.displayOnline = function (list) {
+                for (var i in list) {
+                    setOnline(list[i]);
+                }
+            }
+
+
+            connectionStatus.client.testPrompt= function(text){
+                var answer = prompt(text, "");
+                console.log("prompt " + answer);
+                connectionStatus.server.answerPrompt(answer);
+            }
+            connectionStatus.client.answer = function (answer) {
+                alert(answer);
+            }
+
+
+            $.connection.hub.start().done(function () {
+
+                //sender.server.setOnline($("#name").val());
+
+                console.log("start hub");
+
+            });
+        });
+
+
+    </script>
+}

@@ -176,6 +176,8 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="ChatHub.cs" />
+    <Compile Include="ConnectionHub.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -191,13 +193,14 @@
     <Compile Include="Migrations\201605142121350_Initial.Designer.cs">
       <DependentUpon>201605142121350_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201605151347506_Initial1.cs" />
-    <Compile Include="Migrations\201605151347506_Initial1.Designer.cs">
-      <DependentUpon>201605151347506_Initial1.cs</DependentUpon>
+    <Compile Include="Migrations\201605151347506_rename_user.cs" />
+    <Compile Include="Migrations\201605151347506_rename_user.Designer.cs">
+      <DependentUpon>201605151347506_rename_user.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Battle.cs" />
+    <Compile Include="Models\ConnectionMapping.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\User.cs" />
@@ -235,7 +238,6 @@
     <Content Include="Content\Images\explosion.gif" />
     <Content Include="Content\Images\gameover.png" />
     <Content Include="Content\Images\medal.png" />
-    <Content Include="Content\Images\missing.png" />
     <Content Include="Content\Images\ship1.png" />
     <Content Include="Content\Images\ship1v.png" />
     <Content Include="Content\Images\ship2.png" />
@@ -277,6 +279,7 @@
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\ChatScript.js" />
     <Content Include="Scripts\handlebars.amd.js" />
     <Content Include="Scripts\handlebars.amd.min.js" />
     <Content Include="Scripts\handlebars.js" />
@@ -350,8 +353,8 @@
     <EmbeddedResource Include="Migrations\201605142121350_Initial.resx">
       <DependentUpon>201605142121350_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605151347506_Initial1.resx">
-      <DependentUpon>201605151347506_Initial1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201605151347506_rename_user.resx">
+      <DependentUpon>201605151347506_rename_user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

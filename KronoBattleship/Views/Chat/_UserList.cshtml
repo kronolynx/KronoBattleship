@@ -1,21 +1,20 @@
 ﻿<ul class="list">
-    @foreach (var user in Model) {
-        if (user.UserName != ViewBag.CurrentUser.UserName) { 
-        <li class="clearfix" id="chat_user_@user.UserName >">
-            @*<%= image_tag(user.avatar.url(:thumb), :class => "round-image-40") %>*@
-            <img src="@Url.Content("~/Content/Icons/"+ user.Picture)" class="round-image-40">
-            <div class="about">
-                <div class="name">@user.UserName</div>
-                <div class="status">
-                    <i class="fa fa-bullseye @user.Online"></i> @user.Online
+    @foreach (var user in Model)
+    {
+        if (user.UserName != ViewBag.CurrentUser.UserName)
+        {
+            <li class="clearfix" id="chat_user_@user.UserName">
+                <img src="@Url.Content("~/Content/Icons/"+ user.Picture)" class="round-image-40">
+                <div class="about">
+                    <div class="name">@user.UserName</div>
+                    <div class="status">
+                        <span id="status-icon-@user.UserName" class="fa fa-bullseye offline"></span><span id="status-user-@user.UserName">offline</span>
+                    </div>
                 </div>
-            </div>
-            @if (user.Online == "online")
-            {
-                <div onclick="alert(@ViewBag.CurrentUser.UserName user.UserName)"class="btn btn-success btn-xs start-battle">Battle</div> 
-            }
-            
-        </li>
+                <div id="battle-btn-@user.UserName" onclick="alert('@ViewBag.CurrentUser.UserName @user.UserName')" class="btn btn-success btn-xs start-battle" style="display: none">Battle</div>
+
+
+            </li>
         }
     }
 </ul>
