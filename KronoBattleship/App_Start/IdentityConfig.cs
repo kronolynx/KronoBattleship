@@ -48,7 +48,8 @@ namespace KronoBattleship
             manager.UserValidator = new UserValidator<User>(manager)
             {
                 AllowOnlyAlphanumericUserNames = true,
-                RequireUniqueEmail = true
+                RequireUniqueEmail = true,
+                
             };
 
             // Configure validation logic for passwords

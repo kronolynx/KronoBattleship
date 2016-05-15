@@ -12,11 +12,13 @@ namespace KronoBattleship.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class User : IdentityUser
     {
+        public static Random random = new Random();
         public User()
         {
-            Online = "false";
+            Online = "offline";
             Losses = 0;
             Wins = 0;
+            Picture = (1 + random.Next(22)) + ".png";
         }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {

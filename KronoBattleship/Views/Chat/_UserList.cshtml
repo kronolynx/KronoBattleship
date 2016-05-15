@@ -1,0 +1,21 @@
+﻿<ul class="list">
+    @foreach (var user in Model) {
+        if (user.UserName != ViewBag.CurrentUser.UserName) { 
+        <li class="clearfix" id="chat_user_@user.UserName >">
+            @*<%= image_tag(user.avatar.url(:thumb), :class => "round-image-40") %>*@
+            <img src="@Url.Content("~/Content/Icons/"+ user.Picture)" class="round-image-40">
+            <div class="about">
+                <div class="name">@user.UserName</div>
+                <div class="status">
+                    <i class="fa fa-bullseye @user.Online"></i> @user.Online
+                </div>
+            </div>
+            @if (user.Online == "online")
+            {
+                <div onclick="alert(@ViewBag.CurrentUser.UserName user.UserName)"class="btn btn-success btn-xs start-battle">Battle</div> 
+            }
+            
+        </li>
+        }
+    }
+</ul>

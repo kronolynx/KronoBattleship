@@ -1,0 +1,23 @@
+﻿@model IEnumerable<KronoBattleship.Models.User>
+@{
+    ViewBag.Title = "Chat";
+}
+
+<h2>Chat</h2>
+<div class="row">
+    <div class="col-md-4">
+        <div class="people-list" id="people-list">
+            <!--<div class="search">
+              <input type="text" placeholder="search" />
+              <i class="fa fa-search"></i>
+            </div>-->
+            <!-- User list -->
+            @{ Html.RenderPartial("_UserList", Model);  }
+            <!-- end user list -->
+            
+        </div>
+    </div>
+    <div class="col-md-6">
+        <!-- Chat goes here -->
+    </div>
+</div>

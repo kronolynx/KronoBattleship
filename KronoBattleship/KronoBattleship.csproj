@@ -48,6 +48,14 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -169,6 +177,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Datalayer\ApplicationDbContext.cs" />
@@ -181,6 +190,10 @@
     <Compile Include="Migrations\201605142121350_Initial.cs" />
     <Compile Include="Migrations\201605142121350_Initial.Designer.cs">
       <DependentUpon>201605142121350_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605151347506_Initial1.cs" />
+    <Compile Include="Migrations\201605151347506_Initial1.Designer.cs">
+      <DependentUpon>201605151347506_Initial1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -196,24 +209,87 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Icons\1.png" />
+    <Content Include="Content\Icons\10.png" />
+    <Content Include="Content\Icons\11.png" />
+    <Content Include="Content\Icons\12.png" />
+    <Content Include="Content\Icons\13.png" />
+    <Content Include="Content\Icons\14.png" />
+    <Content Include="Content\Icons\15.png" />
+    <Content Include="Content\Icons\16.png" />
+    <Content Include="Content\Icons\17.png" />
+    <Content Include="Content\Icons\18.png" />
+    <Content Include="Content\Icons\19.png" />
+    <Content Include="Content\Icons\2.png" />
+    <Content Include="Content\Icons\20.png" />
+    <Content Include="Content\Icons\21.png" />
+    <Content Include="Content\Icons\22.png" />
+    <Content Include="Content\Icons\3.png" />
+    <Content Include="Content\Icons\4.png" />
+    <Content Include="Content\Icons\5.png" />
+    <Content Include="Content\Icons\6.png" />
+    <Content Include="Content\Icons\7.png" />
+    <Content Include="Content\Icons\8.png" />
+    <Content Include="Content\Icons\9.png" />
+    <Content Include="Content\Images\bg.png" />
+    <Content Include="Content\Images\explosion.gif" />
+    <Content Include="Content\Images\gameover.png" />
+    <Content Include="Content\Images\medal.png" />
+    <Content Include="Content\Images\missing.png" />
+    <Content Include="Content\Images\ship1.png" />
+    <Content Include="Content\Images\ship1v.png" />
+    <Content Include="Content\Images\ship2.png" />
+    <Content Include="Content\Images\ship2v.png" />
+    <Content Include="Content\Images\ship3.png" />
+    <Content Include="Content\Images\ship3v.png" />
+    <Content Include="Content\Images\ship4.png" />
+    <Content Include="Content\Images\ship4v.png" />
+    <Content Include="Content\Images\ship5.png" />
+    <Content Include="Content\Images\ship5v.png" />
+    <Content Include="Content\Images\ship6.png" />
+    <Content Include="Content\Images\ship6v.png" />
+    <Content Include="Content\Images\shipLong.png" />
+    <Content Include="Content\Images\shipLongV.png" />
+    <Content Include="Content\Images\water.jpg" />
+    <Content Include="Content\font-awesome.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="App_Readme\Handlebarsjs_README.md" />
+    <Content Include="App_Readme\Handlebarsjs_LICENSE" />
+    <Content Include="Content\Images\.keep" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <None Include="Properties\PublishProfiles\KronoBattleship - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\handlebars.amd.js" />
+    <Content Include="Scripts\handlebars.amd.min.js" />
+    <Content Include="Scripts\handlebars.js" />
+    <Content Include="Scripts\handlebars.min.js" />
+    <Content Include="Scripts\handlebars.runtime.amd.js" />
+    <Content Include="Scripts\handlebars.runtime.amd.min.js" />
+    <Content Include="Scripts\handlebars.runtime.js" />
+    <Content Include="Scripts\handlebars.runtime.min.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.0.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -224,7 +300,9 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -235,7 +313,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -258,6 +335,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Chat\Index.cshtml" />
+    <Content Include="Views\Chat\_UserList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -270,6 +349,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201605142121350_Initial.resx">
       <DependentUpon>201605142121350_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605151347506_Initial1.resx">
+      <DependentUpon>201605151347506_Initial1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

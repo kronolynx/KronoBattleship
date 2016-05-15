@@ -12,8 +12,8 @@ namespace KronoBattleship.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Your application description page.";
-            var db = new ApplicationDbContext();
-            return View(db.Users.ToList());
+            
+            return View();
         }
 
         public ActionResult About()

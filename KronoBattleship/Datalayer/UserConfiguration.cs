@@ -13,15 +13,18 @@ namespace KronoBattleship.Datalayer
     {
         public UserConfiguration()
         {
-            Property(u => u.UserName)
+            Property(m => m.UserName)
                 .IsRequired()
                 .HasMaxLength(30)
-                .HasColumnName("Player");
+                .HasColumnAnnotation(
+                    IndexAnnotation.AnnotationName,
+                    new IndexAnnotation(
+                        new IndexAttribute("index_username") { IsUnique = true }));
 
             //Property(u => u.Id)
             //.HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
-            Property(u => u.Email)
+            Property(m => m.Email)
                 .IsRequired()
                 .HasColumnAnnotation(
                     "Index",

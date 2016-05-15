@@ -34,12 +34,12 @@ namespace KronoBattleship.Migrations
             string password = passwordHash.HashPassword("123456");
             new List<User>
             {
-                new User { UserName = "Krono", Email = "krono@gmail.com", PasswordHash = password },
-                new User { UserName = "Ito", Email = "Ito@gmail.com", PasswordHash = password },
-                new User { UserName = "Lexy", Email = "Lexy@gmail.com", PasswordHash = password },
-                new User { UserName = "Yolka", Email = "Yolka@gmail.com", PasswordHash = password },
-                new User { UserName = "Titania", Email = "titania@gmail.com", PasswordHash = password },
-                new User { UserName = "Rox", Email = "rox@gmail.com", PasswordHash = password },
+                new User { UserName = "Krono", Email = "krono@gmail.com", PasswordHash = password, SecurityStamp = Guid.NewGuid().ToString() },
+                new User { UserName = "Ito", Email = "Ito@gmail.com", PasswordHash = password, SecurityStamp = Guid.NewGuid().ToString() },
+                new User { UserName = "Lexy", Email = "Lexy@gmail.com", PasswordHash = password, SecurityStamp = Guid.NewGuid().ToString() },
+                new User { UserName = "Yolka", Email = "Yolka@gmail.com", PasswordHash = password, SecurityStamp = Guid.NewGuid().ToString() },
+                new User { UserName = "Titania", Email = "titania@gmail.com", PasswordHash = password, SecurityStamp = Guid.NewGuid().ToString() },
+                new User { UserName = "Rox", Email = "rox@gmail.com", PasswordHash = password, SecurityStamp = Guid.NewGuid().ToString() },
             }.ForEach(u => context.Users.AddOrUpdate(u));
 
         }
