@@ -1,11 +1,15 @@
-﻿@model IEnumerable<KronoBattleship.Models.User>
+﻿@model IEnumerable<KronoBattleship.Models.UserViewModel>
 @{
     ViewBag.Title = "Chat";
 }
 
+<script>
+    var jsonUsers = @Html.Raw(Json.Encode(Model));
+    console.log(jsonUsers)
+</script>
 <h2>Chat</h2>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="people-list" id="people-list">
             <!--<div class="search">
               <input type="text" placeholder="search" />
@@ -14,23 +18,68 @@
             <!-- User list -->
             @{ Html.RenderPartial("_UserList", Model);  }
             <!-- end user list -->
-            
+
         </div>
     </div>
-    <div class="col-md-6">
-        <!-- Chat goes here -->
+    <div class="col-md-9">
+        <!-- Chat -->
+        <div class="chat">
+            <div class="chat-header clearfix">
+                <div class="chat-about">
+                    <div class="chat-with">Public Chat</div>
+                </div>
+                <i class="fa fa-star"></i>
+            </div> <!-- end chat-header -->
+            <div class="chat-history">
+                <ul id="chat-body"></ul>
+            </div>
+            <div class="chat-message clearfix">
+                <div class="write-form">
+                    <textarea id="public-message" placeholder="Type your message" rows="2"></textarea>
+                    <span id="send-public" class="send">Send</span>
+                </div>
+            </div> <!-- end chat-message -->
+        </div> <!-- end chat -->
+        <!-- end chat -->
     </div>
 </div>
 
 @section scripts {
     <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
     <script src="signalr/hubs"></script>
+    <script type="text/javascript" src="~/Scripts/handlebars.min.js"></script>
+    <script id="player-template" type="text/x-handlebars-template">
+        <li>
+            <div class="message-data">
+                <span class="message-data-name"><i class="fa fa-circle online"></i> {{UserName}}</span>
+                <span class="message-data-time">{{Time}}</span>
+            </div>
+            <div class="message my-message">
+                {{Message}}
+            </div>
+        </li>
+    </script>
+    <script id="other-players-template" type="text/x-handlebars-template">
+        <li class="clearfix">
+            <div class="message-data align-right">
+                <span class="message-data-time">{{Time}}</span> &nbsp; &nbsp;
+                <span class="message-data-name">{{UserName}}  <i class="fa fa-circle me"></i></span>
+            </div>
+            <div class="message other-message float-right">
+                {{Message}}
+            </div>
+        </li>
+    </script>
     <script type="text/javascript">
-        var groupJoined = "";
+        "use strict";
+        var currentusername = "@ViewBag.CurrentUser.UserName";
+        var templateUser = Handlebars.compile($("#player-template").html());
+        var templateOther = Handlebars.compile($("#other-players-template").html());
+
         $(function () {
             // declare a proxy to reference hub
             var connectionStatus = $.connection.connectionHub;
-            //connectionStatus.state.UserName = $('#name').val();
+            var chat = $.connection.chatHub;
 
             connectionStatus.client.login = function (id) {
                 setOnline(id);
@@ -45,15 +94,15 @@
                 }
             }
 
+            chat.client.broadcastMessage = function (username, message) {
+                var date = new Date();
+                var data = {UserName: username,Time: date.toLocaleTimeString() ,Message: message}
+                var  template = currentusername == username ? templateUser(data) :  templateOther(data);
+                $("#chat-body").append(template);
+                var chat = $(".chat-history");
+                chat.scrollTop(chat[0].scrollHeight);
+            };
 
-            connectionStatus.client.testPrompt= function(text){
-                var answer = prompt(text, "");
-                console.log("prompt " + answer);
-                connectionStatus.server.answerPrompt(answer);
-            }
-            connectionStatus.client.answer = function (answer) {
-                alert(answer);
-            }
 
 
             $.connection.hub.start().done(function () {
@@ -61,10 +110,20 @@
                 //sender.server.setOnline($("#name").val());
 
                 console.log("start hub");
-
+                $("#public-message").keypress(function (e) {
+                    if (e.keyCode ===13) {
+                        chat.server.send(currentusername, $('#public-message').val());
+                        $('#public-message').val("");
+                    }
+                });
+                $("#send-public").click(function () {
+                    chat.server.send(currentusername, $('#public-message').val());
+                    $('#public-message').val("");
+                });
             });
         });
 
 
     </script>
+
 }

@@ -1,4 +1,5 @@
-﻿var setOnline = function (id) {
+﻿"use strict";
+var setOnline = function (id) {
     $("#chat_user_" + id).prependTo($(".list"));
     $("#status-icon-" + id).removeClass("offline").addClass("online");
     $("#status-user-" + id).html("online");
