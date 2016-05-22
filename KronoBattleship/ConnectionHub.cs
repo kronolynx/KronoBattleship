@@ -17,14 +17,14 @@ namespace KronoBattleship
         //private ApplicationDbContext db = new ApplicationDbContext();
 
 
-        public void requestPrompt(string text)
+        public void battlePrompt(string enemy, string player)
         {
-            Clients.Others.testPrompt(text);
+            Clients.Group(enemy).displayPrompt(player);
         }
 
-        public void answerPrompt(string answer)
+        public void battleAnswer(string player,bool answer)
         {
-            Clients.Others.answer(answer);
+            Clients.Group(player).answer(Context.User.Identity.Name, answer);
         }
 
         public override Task OnConnected()
@@ -35,6 +35,8 @@ namespace KronoBattleship
             //user.Online = "online";
             //db.SaveChanges();
             _connections.Add(name, Context.ConnectionId);
+            Groups.Add(Context.ConnectionId, name);
+
             Clients.Others.login(name);
             Clients.Caller.displayOnline(_connections.UsersOnline());
             return base.OnConnected();

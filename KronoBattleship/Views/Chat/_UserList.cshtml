@@ -11,7 +11,7 @@
                         <span id="status-icon-@user.UserName" class="fa fa-bullseye offline"></span><span id="status-user-@user.UserName">offline</span>
                     </div>
                 </div>
-                <div id="battle-btn-@user.UserName" onclick="alert('@ViewBag.CurrentUser.UserName @user.UserName')" class="btn btn-success btn-xs start-battle" style="display: none">Battle</div>
+                <div id="battle-btn-@user.UserName" data-toggle="modal" data-target="#waitModal" onclick="challengeToFight('@user.UserName')" class="btn btn-success btn-xs start-battle" style="display: none">Battle</div>
             </li>
         }
     }

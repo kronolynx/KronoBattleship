@@ -176,15 +176,16 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="BattleHub.cs" />
     <Compile Include="ChatHub.cs" />
     <Compile Include="ConnectionHub.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BattleController.cs" />
     <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Datalayer\ApplicationDbContext.cs" />
     <Compile Include="Datalayer\BattleConfiguration.cs" />
-    <Compile Include="Datalayer\MessageConfiguration.cs" />
     <Compile Include="Datalayer\UserConfiguration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -197,12 +198,19 @@
     <Compile Include="Migrations\201605151347506_rename_user.Designer.cs">
       <DependentUpon>201605151347506_rename_user.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605211451401_Remove message.cs" />
+    <Compile Include="Migrations\201605211451401_Remove message.Designer.cs">
+      <DependentUpon>201605211451401_Remove message.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605221503487_Battle ready.cs" />
+    <Compile Include="Migrations\201605221503487_Battle ready.Designer.cs">
+      <DependentUpon>201605221503487_Battle ready.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Battle.cs" />
     <Compile Include="Models\ConnectionMapping.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -341,6 +349,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Chat\Index.cshtml" />
     <Content Include="Views\Chat\_UserList.cshtml" />
+    <Content Include="Views\Battle\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -356,6 +365,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605151347506_rename_user.resx">
       <DependentUpon>201605151347506_rename_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605211451401_Remove message.resx">
+      <DependentUpon>201605211451401_Remove message.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605221503487_Battle ready.resx">
+      <DependentUpon>201605221503487_Battle ready.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

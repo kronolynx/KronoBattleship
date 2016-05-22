@@ -1,0 +1,137 @@
+﻿@model KronoBattleship.Models.Battle
+@{
+    ViewBag.Title = "Battle";
+}
+
+<h2>Index</h2>
+
+
+<div class="col-md-9" id="battle">
+    <div id="info-div">
+
+        <div id="messages"></div>
+        <div id="btnGiveUp">
+
+            @* <%= button_to "Give Up", finish_path(@battle), class: "btn btn-warning", :winner => false, :remote => true %>*@
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div id="battle-field" class="" data-player-id="player_@ViewBag.CurrentUser.UserName"
+         data-enemy-id="player_@ViewBag.Enemy.UserName" data-battle-id="@Model.BattleId">
+
+        @*<%= render partial: 'battles/player_board' %>*@
+        <div id="player-board" class="board">
+
+        </div>
+
+        <div id="enemy-board" class="board">
+
+        </div>
+    </div>
+
+</div>
+
+<div class="col-md-3">
+    <div class="chat">
+
+        <div class="chat-header clearfix">
+            <img src="@Url.Content("~/Content/Icons/"+ ViewBag.Enemy.Picture)" class="round-image-40">
+            <div class="chat-about">
+                <div class="chat-with">Chat with @ViewBag.Enemy.UserName</div>
+            </div>
+            <i class="fa fa-star"></i>
+        </div> <!-- end chat-header -->
+
+        <div class="chat-history">
+            <ul id="chat-body"></ul>
+            @*<ul id="chatbox_<%= @battle.id %>">
+                    <%= render @battle.messages %>
+                </ul>*@
+
+        </div> <!-- end chat-history -->
+        <div class="chat-message clearfix">
+            <div class="write-form">
+                <textarea id="private-message" placeholder="Type your message" rows="2"></textarea>
+                <span id="send-private" class="send">Send</span>
+            </div>
+        </div> <!-- end chat-message -->
+        @*<div class="chat-message clearfix">
+                <%= form_for Message.new, remote: true do |f| %>
+                <%= f.hidden_field :battle_id, :value => @battle.id %>
+                <%= f.text_area :body %>
+                <%= f.submit "Send" %>
+                <% end %>
+            </div> <!-- end chat-message -->*@
+
+    </div> <!-- end chat -->
+</div>
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script type="text/javascript" src="~/Scripts/handlebars.min.js"></script>
+    <script id="player-template" type="text/x-handlebars-template">
+        <li>
+            <div class="message-data">
+                <span class="message-data-name"><i class="fa fa-circle online"></i> {{UserName}}</span>
+                <span class="message-data-time">{{Time}}</span>
+            </div>
+            <div class="message my-message">
+                {{Message}}
+            </div>
+        </li>
+    </script>
+    <script id="other-players-template" type="text/x-handlebars-template">
+        <li class="clearfix">
+            <div class="message-data align-right">
+                <span class="message-data-time">{{Time}}</span> &nbsp; &nbsp;
+                <span class="message-data-name">{{UserName}}  <i class="fa fa-circle me"></i></span>
+            </div>
+            <div class="message other-message float-right">
+                {{Message}}
+            </div>
+        </li>
+    </script>
+    <script type="text/javascript">
+        "use strict";
+        var currentUser = "@ViewBag.CurrentUser.UserName";
+        var enemyName = "@Model.PlayerName" === currentUser ? "@Model.EnemyName" : "@Model.PlayerName";
+        var battleId = "@Model.BattleId";
+        var templateUser = Handlebars.compile($("#player-template").html());
+        var templateOther = Handlebars.compile($("#other-players-template").html());
+
+
+        console.log("battle", currentUser, "enemy", enemyName);
+
+        var battleHub = $.connection.battleHub;
+
+
+        battleHub.client.broadcastMessage = function (username, message) {
+            console.log(username, message);
+            var date = new Date();
+            var data = { UserName: username, Time: date.toLocaleTimeString(), Message: message }
+            var template = currentUser === username ? templateUser(data) : templateOther(data);
+            $("#chat-body").append(template);
+            var chat = $(".chat-history");
+            chat.scrollTop(chat[0].scrollHeight);
+        };
+
+
+
+        $.connection.hub.start().done(function () {
+            battleHub.server.join(battleId);
+            $("#private-message").keypress(function (e) {
+                if (e.keyCode === 13) {
+                    battleHub.server.send(currentUser, battleId, $('#private-message').val());
+                    $('#private-message').val("");
+                }
+            });
+            $("#send-private").click(function () {
+                battleHub.server.send(currentUser, battleId, $('#private-message').val());
+                $('#private-message').val("");
+            });
+        });
+
+    </script>
+}

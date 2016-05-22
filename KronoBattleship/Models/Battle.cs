@@ -8,15 +8,30 @@ namespace KronoBattleship.Models
 {
     public class Battle
     {
+        public Battle() { }
+        public Battle(User player, User enemy)
+        {
+            if (player.UserName.CompareTo(enemy.UserName) < 0)
+            {
+                Player = player;
+                Enemy = enemy;
+            } else
+            {
+                Player = enemy;
+                Enemy = player;
+            }
+            PlayerName = Player.UserName;
+            EnemyName = Enemy.UserName;
+            PlayerBoard = EnemyBoard = new String('x', 100);
+        }
         public int BattleId { get; set; }
+
+        public string PlayerName { get; set; }
         public virtual User Player { get; set; }
-        public int PlayerId { get; set; }
+        public string EnemyName { get; set; }
         public virtual User Enemy { get; set; }
-        public int EnemyId { get; set; }
         public string PlayerBoard { get; set; }
         public string EnemyBoard { get; set; }
-        public int ActivePlayer { get; set; }
-        // Child 
-        public virtual ICollection<Message> Messages { get; set; }
+        public string ActivePlayer { get; set; }
     }
 }

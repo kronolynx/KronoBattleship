@@ -12,10 +12,10 @@ namespace KronoBattleship.Datalayer
     {
         public BattleConfiguration()
         {
-            Property(n => n.EnemyId)
-                .IsRequired();
-            Property(n => n.PlayerId)
-                .IsRequired();
+            //Property(n => n.EnemyId)
+            //    .IsRequired();
+            //Property(n => n.PlayerId)
+            //    .IsRequired();
             Property(n => n.PlayerBoard)
                 .HasMaxLength(100);
             Property(n => n.EnemyBoard)
@@ -26,7 +26,7 @@ namespace KronoBattleship.Datalayer
             //    .HasForeignKey(n => n.BattleId)
             //    .WillCascadeOnDelete(true);
 
-            //HasKey(n => new { n.PlayerId, n.EnemyId});
+           //HasKey(n => new { n.PlayerId, n.EnemyId});
         }
     }
 }

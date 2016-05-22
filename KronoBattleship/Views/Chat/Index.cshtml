@@ -44,9 +44,39 @@
     </div>
 </div>
 
+
+<!-- Modal -->
+<div id="challengeToBattleModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Battle</h4>
+                <p><span id="modalChallenger"></span> has challenged you to a duel</p>
+                <button type="button" class="btn btn-default" onclick="battleAnswer(true)" data-dismiss="modal">Accept</button>
+                <button type="button" class="btn btn-default" onclick="battleAnswer(false)" data-dismiss="modal">Reject</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="waitModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Waiting</h4>
+                <p>battle ?</p>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 @section scripts {
     <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
-    <script src="signalr/hubs"></script>
+    @* TODO if problems add ~/ to signalr *@
+    <script src="~/signalr/hubs"></script>
     <script type="text/javascript" src="~/Scripts/handlebars.min.js"></script>
     <script id="player-template" type="text/x-handlebars-template">
         <li>
@@ -72,56 +102,92 @@
     </script>
     <script type="text/javascript">
         "use strict";
-        var currentusername = "@ViewBag.CurrentUser.UserName";
+        var currentUser = "@ViewBag.CurrentUser.UserName";
+        console.log(currentUser);
         var templateUser = Handlebars.compile($("#player-template").html());
         var templateOther = Handlebars.compile($("#other-players-template").html());
+        
+        var challengeToFight  = function(enemy){
+            console.log("fight", enemy);
+            connectionStatus.server.battlePrompt(enemy, currentUser);
+        };
 
-        $(function () {
-            // declare a proxy to reference hub
-            var connectionStatus = $.connection.connectionHub;
-            var chat = $.connection.chatHub;
 
-            connectionStatus.client.login = function (id) {
-                setOnline(id);
+        //$(function () {
+        // declare a proxy to reference hub
+        var connectionStatus = $.connection.connectionHub;
+        var chat = $.connection.chatHub;
+
+        connectionStatus.client.login = function (id) {
+            setOnline(id);
+        }
+        connectionStatus.client.logout = function (id) {
+            setOffline(id);
+        }
+
+        connectionStatus.client.displayOnline = function (list) {
+            for (var i in list) {
+                setOnline(list[i]);
             }
-            connectionStatus.client.logout = function (id) {
-                setOffline(id);
-            }
+        }
 
-            connectionStatus.client.displayOnline = function (list) {
-                for (var i in list) {
-                    setOnline(list[i]);
-                }
-            }
+        chat.client.broadcastMessage = function (username, message) {
+            var date = new Date();
+            var data = {UserName: username,Time: date.toLocaleTimeString() ,Message: message}
+            var  template = currentUser == username ? templateUser(data) :  templateOther(data);
+            $("#chat-body").append(template);
+            var chat = $(".chat-history");
+            chat.scrollTop(chat[0].scrollHeight);
+        };
 
-            chat.client.broadcastMessage = function (username, message) {
-                var date = new Date();
-                var data = {UserName: username,Time: date.toLocaleTimeString() ,Message: message}
-                var  template = currentusername == username ? templateUser(data) :  templateOther(data);
-                $("#chat-body").append(template);
-                var chat = $(".chat-history");
-                chat.scrollTop(chat[0].scrollHeight);
+        // called button to start fight
+        //challengeToFight
+
+        connectionStatus.client.displayPrompt= function(player){
+            //var answer = prompt(text, "");
+            // TODO set the started player in the modal 
+            $("#modalChallenger").text(player);
+            $("#challengeToBattleModal").modal(
+                {backdrop: 'static',
+                    keyboard: false,
+                    show: true,
+                });
+        }
+
+        var battleAnswer = function(answer){
+            var player =  $("#modalChallenger").text();
+            connectionStatus.server.battleAnswer(player, answer);
+            if(answer)
+                redirect("/Battle/Create", "POST",  { user1: currentUser, user2: player});
+        }
+
+        connectionStatus.client.answer = function(enemy, answer){
+            if(answer){
+                //alert("accept " + enemy + answer);
+                redirect("/Battle/Create",  "POST",  { user1: currentUser, user2: enemy});
+            }else {
+                alert("reject " + enemy + answer);
             };
+        }
 
+        $.connection.hub.start().done(function () {
 
+            //$('[id*="battle-btn-"]').click(console.log(this.id));
+            //$(".startBattle").click(console.log(this.data.userId));
 
-            $.connection.hub.start().done(function () {
-
-                //sender.server.setOnline($("#name").val());
-
-                console.log("start hub");
-                $("#public-message").keypress(function (e) {
-                    if (e.keyCode ===13) {
-                        chat.server.send(currentusername, $('#public-message').val());
-                        $('#public-message').val("");
-                    }
-                });
-                $("#send-public").click(function () {
-                    chat.server.send(currentusername, $('#public-message').val());
+            //sender.server.setOnline($("#name").val());
+            $("#public-message").keypress(function (e) {
+                if (e.keyCode ===13) {
+                    chat.server.send(currentUser, $('#public-message').val());
                     $('#public-message').val("");
-                });
+                }
+            });
+            $("#send-public").click(function () {
+                chat.server.send(currentUser, $('#public-message').val());
+                $('#public-message').val("");
             });
         });
+        // });
 
 
     </script>

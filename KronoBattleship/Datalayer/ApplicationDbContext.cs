@@ -18,12 +18,10 @@ namespace KronoBattleship.Datalayer
         }
 
         public DbSet<Battle> Battles { get; set; }
-        public DbSet<Message> Messages { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new BattleConfiguration());
-            modelBuilder.Configurations.Add(new MessageConfiguration());
             modelBuilder.Configurations.Add(new UserConfiguration());
             base.OnModelCreating(modelBuilder);
         }
