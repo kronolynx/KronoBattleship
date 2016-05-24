@@ -2,22 +2,21 @@
 using KronoBattleship.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using System;
-using System.Collections.Generic;
+using Microsoft.AspNet.SignalR;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace KronoBattleship.Controllers
 {
-    [Authorize]
+    [System.Web.Mvc.Authorize]
     public class BattleController : Controller
     {
         // GET: Battle/id
-        public ActionResult Index(int id)
+        public ActionResult Index(int battleId)
         {
             var db = new ApplicationDbContext();
-            Battle battle = db.Battles.Find(id);
+            Battle battle = db.Battles.Find(battleId);
             var currentUser = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
             if(currentUser.UserName.Equals(battle.PlayerName) || currentUser.UserName.Equals(battle.EnemyName))
             {
@@ -37,9 +36,7 @@ namespace KronoBattleship.Controllers
             
             getPlayers(user1, user2, out playerName, out enemyName);
             var db = new ApplicationDbContext();
-            Battle battle = db.Battles.Where(b => b.PlayerName.Equals(playerName))
-                                      .Where(b => b.EnemyName.Equals(enemyName))
-                                      .FirstOrDefault();
+            Battle battle = db.Battles.Where(b => b.PlayerName.Equals(playerName) && b.EnemyName.Equals(enemyName)).FirstOrDefault();
             if(battle == null)
             {
                 User player = db.Users.Where(n => n.UserName.Equals(playerName)).First();
@@ -48,7 +45,10 @@ namespace KronoBattleship.Controllers
                 db.Battles.Add(battle);
                 db.SaveChanges();
             }
-            return RedirectToAction("Index", new { id = battle.BattleId});      
+            var context = GlobalHost.ConnectionManager.GetHubContext<ConnectionHub>();
+            context.Clients.Group(getEnemyName(battle)).answer(User.Identity.Name, battle.BattleId);
+            //context.Clients.All.test("hello");
+            return RedirectToAction("Index", new { battleId = battle.BattleId});      
         }
 
         // GET: Battle/Edit/5
@@ -93,6 +93,11 @@ namespace KronoBattleship.Controllers
             {
                 return View();
             }
+        }
+
+        private string getEnemyName(Battle battle)
+        {
+             return battle.PlayerName.Equals(User.Identity.Name) ? battle.EnemyName : battle.PlayerName ;
         }
 
         // Helpers

@@ -206,6 +206,10 @@
     <Compile Include="Migrations\201605221503487_Battle ready.Designer.cs">
       <DependentUpon>201605221503487_Battle ready.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605232046258_RowVersion.cs" />
+    <Compile Include="Migrations\201605232046258_RowVersion.Designer.cs">
+      <DependentUpon>201605232046258_RowVersion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Battle.cs" />
@@ -371,6 +375,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605221503487_Battle ready.resx">
       <DependentUpon>201605221503487_Battle ready.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605232046258_RowVersion.resx">
+      <DependentUpon>201605232046258_RowVersion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

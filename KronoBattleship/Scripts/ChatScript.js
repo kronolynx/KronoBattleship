@@ -14,12 +14,11 @@ var setOffline = function (id) {
 };
 
 
-var redirect = function(url, method, args)
-{
+var redirect = function (url, method, args) {
     var form = '';
-    $.each( args, function( key, value ) {
-        form += '<input type="hidden" name="'+key+'" value="'+value+'">';
+    $.each(args, function (key, value) {
+        form += '<input type="hidden" name="' + key + '" value="' + value + '">';
     });
     $('<form action="' + url + '" method="' + method + '">' + form + '</form>').appendTo('body').submit();
-}
+};
 

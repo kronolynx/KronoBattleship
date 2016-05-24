@@ -20,13 +20,15 @@ namespace KronoBattleship.Datalayer
                 .HasMaxLength(100);
             Property(n => n.EnemyBoard)
                 .HasMaxLength(100);
+            Property(p => p.RowVersion)
+                .IsConcurrencyToken();
 
             //HasMany(n => n.Messages)
             //    .WithOptional()
             //    .HasForeignKey(n => n.BattleId)
             //    .WillCascadeOnDelete(true);
 
-           //HasKey(n => new { n.PlayerId, n.EnemyId});
+            //HasKey(n => new { n.PlayerId, n.EnemyId});
         }
     }
 }

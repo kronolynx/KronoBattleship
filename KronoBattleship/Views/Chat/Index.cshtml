@@ -156,15 +156,21 @@
 
         var battleAnswer = function(answer){
             var player =  $("#modalChallenger").text();
-            connectionStatus.server.battleAnswer(player, answer);
+            //connectionStatus.server.battleAnswer(player, answer);
             if(answer)
                 redirect("/Battle/Create", "POST",  { user1: currentUser, user2: player});
         }
 
+        connectionStatus.client.test = function(ans){
+            alert(ans);
+        }
+
+        // if answer === -1 fight was rejected
         connectionStatus.client.answer = function(enemy, answer){
-            if(answer){
+            console.log(typeof answer, answer);
+            if(answer !== -1){
                 //alert("accept " + enemy + answer);
-                redirect("/Battle/Create",  "POST",  { user1: currentUser, user2: enemy});
+                redirect("/Battle/Index",  "GET",  { battleId: answer});
             }else {
                 alert("reject " + enemy + answer);
             };
