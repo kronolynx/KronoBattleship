@@ -91,7 +91,7 @@
     <script type="text/javascript">
         "use strict";
         var battleJson = @Html.Raw(Json.Encode(Model));
-        console.table(battleJson);
+        //console.table(battleJson);
 
         var templateUser = Handlebars.compile($("#player-template").html());
         var templateOther = Handlebars.compile($("#other-players-template").html());
@@ -121,6 +121,16 @@
             if(functionName === "readyToAttack"){
                 activateClick();
                 console.log('ready to attack');
+            }
+        }
+
+        battleHub.client.attack = function(functionName, attack, over){
+            if(functionName === "hit"){
+                activateClick();
+                $('#player-board #' + attack).append("<div class='explosion'></div>");
+            }
+            if(functionName === "miss"){
+                activateClick();$('#player-board #' + attack).append("<span class='hole miss'></span>");
             }
         }
 

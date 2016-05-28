@@ -21,6 +21,11 @@ namespace KronoBattleship
             Clients.Group(enemyName).callFunction(functionName);
         }
 
+        public void Attack(string enemyName, string functionName, int attack, bool over)
+        {
+            Clients.Group(enemyName).attack(functionName, attack, over);
+        }
+
         public Task Join(string battleId)
         {
             return Groups.Add(Context.ConnectionId, battleId);

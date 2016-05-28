@@ -7,7 +7,7 @@ var generateBoard = function () {
     return board;
 };
 
-var playerReady = function(){
+var playerReady = function () {
     $("#placementBoard").remove();
     $("#btnGiveUp").show();
     $("#enemy-board").show();
@@ -23,23 +23,23 @@ var ships = [["aircraft", "aircraftV", "destroyer1", "destroyer1V", "destroyer2"
 
 
 
-function displayPlayerShips(board){
+function displayPlayerShips(board) {
     var ignoreChar = "x"
-    for(var i = 0; i < 100; i++){
+    for (var i = 0; i < 100; i++) {
         var char = charWithoutAttack(board[i]);
-        if(ignoreChar.indexOf(char) == -1){
+        if (ignoreChar.indexOf(char) == -1) {
             setShip(i, char);
-            ignoreChar+= board[i];
-            if(char != board[i]){
-                ignoreChar+= char;
+            ignoreChar += board[i];
+            if (char != board[i]) {
+                ignoreChar += char;
             }
         }
     }
 }
 
-function displayplayerAttacks(board){
+function displayplayerAttacks(board) {
     var ignoreChar = "xacegikmoqs"
-    for(var i = 0; i < board.length; i++) {
+    for (var i = 0; i < board.length; i++) {
         var char = board[i];
         if (ignoreChar.indexOf(char) == -1) {
             var boardCell = $("#player-board #" + i);
@@ -52,18 +52,18 @@ function displayplayerAttacks(board){
     }
 
 
-    if(board[i] != 'x' && board.charCodeAt(i) % 2 == 0){
+    if (board[i] != 'x' && board.charCodeAt(i) % 2 == 0) {
 
     }
 }
 
-function displayEnemyBoard(board){
+function displayEnemyBoard(board) {
     var ignoreChar = "xacegikmoqs"
-    for(var i = 0; i < board.length; i++){
+    for (var i = 0; i < board.length; i++) {
         var char = board[i];
-        if(ignoreChar.indexOf(char) == -1){
+        if (ignoreChar.indexOf(char) == -1) {
             var boardCell = $("#enemy-board #" + i);
-            if(char == 'y'){
+            if (char == 'y') {
                 boardCell.children().addClass("miss");
             } else {
                 boardCell.children().addClass("hit");
@@ -76,11 +76,11 @@ function displayEnemyBoard(board){
 }
 
 
-function charWithoutAttack(char){
-    return  char.charCodeAt(0) % 2 == 0 ? String.fromCharCode(char.charCodeAt(0) - 1) : char;
+function charWithoutAttack(char) {
+    return char.charCodeAt(0) % 2 == 0 ? String.fromCharCode(char.charCodeAt(0) - 1) : char;
 }
 
-function setShip(pos, char){
+function setShip(pos, char) {
     $("#player-board #" + pos).append("<div class='ship' id='" + shipIdFromChar(char) + "'></div>")
 }
 
@@ -100,17 +100,17 @@ function setBoardPlacement() {
             var step = getStep(ship);
             var tail = getShipTail(ship);
 
-            for (var i = parseInt(head); i <= tail; i += step) {
+            for (var i = parseInt(head) ; i <= tail; i += step) {
                 boardArray[i] = charFromShipId(shipId);
             }
             boardString = boardArray.join("");
         }
-        else{
+        else {
             boardString = "";
             return false;
         }
     });
-    if(boardString){
+    if (boardString) {
         //var battleField = $('#battle-field');
         //var battleId = battleField.data('battleId');
         //var playerId = battleField.data('playerId');
@@ -118,15 +118,15 @@ function setBoardPlacement() {
         $.ajax({
             url: "/Battle/Ready",
             type: "POST",
-            data : {battleId : battleJson.BattleId, playerBoard: boardString},
-            success: function(e){
-                console.log('ready', e);
+            data: { battleId: battleJson.BattleId, playerBoard: boardString },
+            success: function (e) {
+                //console.log('ready', e);
                 playerReady();
                 battleJson.PlayerBoard = boardString;
                 battleJson.EnemyBoard = e.EnemyBoard;
                 battleHub.server.callFunction(battleJson.EnemyName, battleJson.EnemyBoard === "" ? "enemyReady" : "readyToAttack");
             },
-            error: function (e) {            
+            error: function (e) {
                 console.log('Error on ready ' + e);
             }
         });
@@ -136,7 +136,7 @@ function setBoardPlacement() {
     }
 }
 
-function getShipSize(ship){
+function getShipSize(ship) {
     return getShipSizeById(getShipId(ship));
 }
 /**
@@ -208,7 +208,7 @@ function getShipId(ship) {
  * @param char
  * @returns {*}
  */
-function shipIdFromChar(char){
+function shipIdFromChar(char) {
     return ships[0][ships[1].indexOf(char)];
 }
 /**
@@ -216,7 +216,7 @@ function shipIdFromChar(char){
  * @param shipId
  * @returns the char equivalent for this ship to use in the string board array
  */
-function charFromShipId(shipId){
+function charFromShipId(shipId) {
     return ships[1][ships[0].indexOf(shipId)];
 }
 
@@ -232,20 +232,20 @@ function readyToAttack(isPlayerTurn) {
  * @param ship
  * @returns {boolean}
  */
-function isValidPosition(ship){
+function isValidPosition(ship) {
     // when horizontal the step is 10 because we calculate for a vertical ship and the difference is 10 boxes
     // the tail must be in a position that is less than 100
     var head = getShipAppendedPosition(ship);
     var shipSize = getShipSize(ship);
-    return (isHorizontal(ship) && getShipTailCalculated(head,shipSize, 10) < 100) ||
-           (isVertical(ship) && (( head % 10) <  (getShipTailCalculated(head,shipSize, 1) % 10 )));
+    return (isHorizontal(ship) && getShipTailCalculated(head, shipSize, 10) < 100) ||
+           (isVertical(ship) && ((head % 10) < (getShipTailCalculated(head, shipSize, 1) % 10)));
 }
 
-function isVertical(ship){
-    return getShipId(ship).indexOf('V') > -1 ;
+function isVertical(ship) {
+    return getShipId(ship).indexOf('V') > -1;
 }
 
-function isHorizontal(ship){
+function isHorizontal(ship) {
     return !isVertical(ship);
 }
 
@@ -275,7 +275,7 @@ function calculateShipPosition(shipId, pos) {
     return headPos;
 }
 
-function checkCollision(ship){
+function checkCollision(ship) {
     return checkCollisionById(getShipId(ship), getShipAppendedPosition(ship));
 }
 /**
@@ -315,8 +315,8 @@ function comparePosition(calculatedPosShipDragged, pos2, size1, size2, step1, st
     if (pos2 != "shipYard") {
         var tailShip1 = getShipTailCalculated(calculatedPosShipDragged, size1, step1);
         var tailShip2 = getShipTailCalculated(pos2, size2, step2);
-        for (var i = parseInt(calculatedPosShipDragged); i <= tailShip1; i += step1) {
-            for (var k = parseInt(pos2); k <= tailShip2; k += step2) {
+        for (var i = parseInt(calculatedPosShipDragged) ; i <= tailShip1; i += step1) {
+            for (var k = parseInt(pos2) ; k <= tailShip2; k += step2) {
                 if (k == i) {
                     return true;
                 }
@@ -328,7 +328,7 @@ function comparePosition(calculatedPosShipDragged, pos2, size1, size2, step1, st
 
 //// if the user board is null then we need to create it use String.IsNullOrEmpty
 var setBoard = function () {
-    var placementBoard =function () {
+    var placementBoard = function () {
         var placementBoard =
             '<div id="placementBoard">' +
             '<div id="shipSelection">' +
@@ -387,23 +387,23 @@ var setBoard = function () {
     $(".ship").dblclick(function () {
         var ship = $(this);
         // check if the tail of the ship is inside the board
-        if(isValidPosition(ship)){
+        if (isValidPosition(ship)) {
             var ship_id = getShipId(ship);
             var shipPostfix = ship_id.charAt(ship_id.length - 1)
-            var new_ship_id =  shipPostfix == 'V' ? ship_id.slice(0, -1) : ship_id + "V";
+            var new_ship_id = shipPostfix == 'V' ? ship_id.slice(0, -1) : ship_id + "V";
 
             // check if with the new id there's collisions if not then sets the dimensions of the ship else undo the change
             ship.attr("id", new_ship_id);
-            if(!checkCollision(ship)){
+            if (!checkCollision(ship)) {
 
-                if(document.getBoxObjectFor != null || window.mozInnerScreenX != null) {
+                if (document.getBoxObjectFor != null || window.mozInnerScreenX != null) {
                     var height = ship.css("height");
                     var width = ship.css("width");
 
                     ship.css("height", width);
                     ship.css("width", height);
                 }
-            }else {
+            } else {
                 ship.attr("id", ship_id);
             }
 
@@ -415,12 +415,12 @@ var setBoard = function () {
         setBoardPlacement();
     });
 
-    
+
 }
 
 // after the player has set the ships we must display the enemy board
-var displayBoard = function(){
-    
+var displayBoard = function () {
+
     $("#enemy-board").show();
     $('#btnGiveUp').show();
 
@@ -435,6 +435,23 @@ var displayBoard = function(){
 
 }
 
+var displayAttack = function(hit, attack) {
+    var shot = $("#enemy-board #" + attack);
+    if (hit) {
+        console.info("hit");
+        shot.children().addClass("hit");
+    }
+    else {
+        console.info("miss");
+        shot.children().addClass("miss");
+    }
+    shot.addClass("");
+    //<% if @game_over %>
+    //  <% publish_to "/user_#{enemy_id}" do %>
+    //    $.post("/battle/<%= @battle.id %>/finish?winner=false");
+    //  <% end %>
+    //<% end %>
+}
 
 /**
  * function that allows to attack the other player
@@ -455,11 +472,14 @@ function activateClick() {
         var attack = $(this).attr("id");
 
         $.ajax({
-            url: "/battle/" + battleJson.BattleId + "/edit?attack=" + attack,
-            type: "post",
-            success: function () {
+            url: "/Battle/Attack",
+            type: "POST",
+            data: { battleId: battleJson.BattleId, attack: attack },
+            success: function (e) {
                 deactivateClick();
-                console.log('successful attack');
+                displayAttack(e.Hit, attack);
+                //console.log('successful attack', e);
+                battleHub.server.attack(battleJson.EnemyName, e.Hit ? "hit" : "miss", attack, false);
             },
             error: function () {
                 alert('Error');
@@ -478,7 +498,7 @@ function deactivateClick() {
     disableSeaBox(enemySeabox);
 
 }
-function disableSeaBox(enemySeabox){
+function disableSeaBox(enemySeabox) {
     enemySeabox.off("click");
     enemySeabox.off("mouseenter");
     enemySeabox.off("mouseleave", function () {

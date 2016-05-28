@@ -49,27 +49,51 @@ namespace KronoBattleship.Controllers
             return RedirectToAction("Index", new { battleId = battle.BattleId });
         }
 
-        // GET: Battle/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Battle/Edit/5
+ 
+        // POST: Battle/Attack/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Attack(int battleId, int attack)
         {
-            try
+            bool hit;
+            string boardAfterAttack;
+            var playerName = getCurrentUserName();
+            var db = new ApplicationDbContext();
+            Battle battle = db.Battles.Find(battleId);
+            if (playerName.Equals(battle.PlayerName))
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
+                boardAfterAttack = battle.EnemyBoard;
+                shipHit(attack, out hit, ref boardAfterAttack);
+                battle.EnemyBoard = boardAfterAttack;
+            }  else
             {
-                return View();
+                boardAfterAttack = battle.PlayerBoard;
+                shipHit(attack, out hit, ref boardAfterAttack);
+                battle.PlayerBoard = boardAfterAttack;
             }
+            battle.ActivePlayer = getEnemyName(battle);
+            db.SaveChanges();
+            return Json(new {Hit = hit, EnemyBoard = boardAfterAttack});
         }
+
+    //    def edit
+    //# use a variable for hit and attack in order to use them from the view
+    //@attack = params[:attack]
+    //    @hit = hit?(@attack)
+    //if current_user.id == @battle.active_player
+    //  if @hit
+    //    PrivatePub.publish_to("/user_#{enemy_id}", "activateClick();$('#player-board ##{params[:attack]}').append(\"<div class='explosion'></div>\");")
+    //  else
+    //    PrivatePub.publish_to("/user_#{enemy_id}", "activateClick();$('#player-board ##{params[:attack]}').append(\"<span class='hole miss'></span>\");")
+    //  end
+    //  @battle.active_player = enemy_id
+    //  @battle.save
+    //  @game_over = game_over ?
+    //else
+    //end
+    //respond_to do |format|
+    //  format.js { j render partial: 'edit' }
+    //    end
+    //  end
 
         // GET: Battle/Delete/5
         public ActionResult Delete(int id)
@@ -104,11 +128,15 @@ namespace KronoBattleship.Controllers
             {
                 battle.PlayerBoard = playerBoard;
                 enemyBoard = battle.EnemyBoard;
+                if (battle.EnemyBoard == "")
+                    battle.ActivePlayer = battle.PlayerName;
             }
             else
             {
                 battle.EnemyBoard = playerBoard;
                 enemyBoard = battle.PlayerBoard;
+                if (battle.PlayerBoard == "")
+                    battle.ActivePlayer = battle.EnemyName;
             }
             db.SaveChanges();
             return Json(new { EnemyBoard = enemyBoard });///BattleViewModel(battle, currentUserName));
@@ -141,6 +169,16 @@ namespace KronoBattleship.Controllers
                 player = user2;
                 enemy = user1;
             }
+        }
+
+        private void shipHit(int attack, out bool hit, ref string enemyBoard)
+        {
+            // if the enemyboard contains any letter that indicates is a ship
+            hit = "acegikmoqs".Contains(enemyBoard[attack]);
+            char[] tempBoard = enemyBoard.ToCharArray();
+            // increase the letter at the possition of the attack
+            tempBoard[attack] = (char)(enemyBoard[attack] + 1);
+            enemyBoard = new string(tempBoard);
         }
     }
 }
