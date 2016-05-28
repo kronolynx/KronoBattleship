@@ -14,6 +14,13 @@ namespace KronoBattleship
             Clients.Group(battleId).broadcastMessage(user, message);
         }
 
+        //TODO check if the callback can be sent from javascript
+        public void CallFunction(string enemyName, string functionName)
+        {
+            
+            Clients.Group(enemyName).callFunction(functionName);
+        }
+
         public Task Join(string battleId)
         {
             return Groups.Add(Context.ConnectionId, battleId);

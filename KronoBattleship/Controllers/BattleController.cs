@@ -17,12 +17,10 @@ namespace KronoBattleship.Controllers
         {
             var db = new ApplicationDbContext();
             Battle battle = db.Battles.Find(battleId);
-            var currentUser = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-            if(currentUser.UserName.Equals(battle.PlayerName) || currentUser.UserName.Equals(battle.EnemyName))
+            var currentUserName = getCurrentUserName();
+            if (battle != null && (currentUserName.Equals(battle.PlayerName) || currentUserName.Equals(battle.EnemyName)))
             {
-                ViewBag.CurrentUser = currentUser;
-                ViewBag.Enemy = battle.PlayerName.Equals(ViewBag.CurrentUser.UserName) ? battle.Enemy : battle.Player;
-                return View(battle);
+                return View(new BattleViewModel(battle, currentUserName));
             }
             return Redirect("/Chat/Index");
         }
@@ -33,11 +31,11 @@ namespace KronoBattleship.Controllers
         {
 
             string playerName, enemyName;
-            
+
             getPlayers(user1, user2, out playerName, out enemyName);
             var db = new ApplicationDbContext();
             Battle battle = db.Battles.Where(b => b.PlayerName.Equals(playerName) && b.EnemyName.Equals(enemyName)).FirstOrDefault();
-            if(battle == null)
+            if (battle == null)
             {
                 User player = db.Users.Where(n => n.UserName.Equals(playerName)).First();
                 User enemy = db.Users.Where(n => n.UserName.Equals(enemyName)).First();
@@ -45,10 +43,10 @@ namespace KronoBattleship.Controllers
                 db.Battles.Add(battle);
                 db.SaveChanges();
             }
-            var context = GlobalHost.ConnectionManager.GetHubContext<ConnectionHub>();
+            var context = getContext();
             context.Clients.Group(getEnemyName(battle)).answer(User.Identity.Name, battle.BattleId);
             //context.Clients.All.test("hello");
-            return RedirectToAction("Index", new { battleId = battle.BattleId});      
+            return RedirectToAction("Index", new { battleId = battle.BattleId });
         }
 
         // GET: Battle/Edit/5
@@ -95,9 +93,39 @@ namespace KronoBattleship.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult Ready(int battleId, string playerBoard)
+        {
+            var db = new ApplicationDbContext();
+            Battle battle = db.Battles.Find(battleId);
+            var currentUserName = getCurrentUserName();
+            string enemyBoard;
+            if (currentUserName.Equals(battle.PlayerName))
+            {
+                battle.PlayerBoard = playerBoard;
+                enemyBoard = battle.EnemyBoard;
+            }
+            else
+            {
+                battle.EnemyBoard = playerBoard;
+                enemyBoard = battle.PlayerBoard;
+            }
+            db.SaveChanges();
+            return Json(new { EnemyBoard = enemyBoard });///BattleViewModel(battle, currentUserName));
+        }
+
+
+        private IHubContext getContext()
+        {
+            return GlobalHost.ConnectionManager.GetHubContext<ConnectionHub>();
+        }
+        private string getCurrentUserName()
+        {
+            return System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId()).UserName;
+        }
         private string getEnemyName(Battle battle)
         {
-             return battle.PlayerName.Equals(User.Identity.Name) ? battle.EnemyName : battle.PlayerName ;
+            return battle.PlayerName.Equals(User.Identity.Name) ? battle.EnemyName : battle.PlayerName;
         }
 
         // Helpers

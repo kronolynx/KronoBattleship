@@ -1,4 +1,4 @@
-﻿@model KronoBattleship.Models.Battle
+﻿@model KronoBattleship.Models.BattleViewModel
 @{
     ViewBag.Title = "Battle";
 }
@@ -17,8 +17,8 @@
     </div>
     <div class="clearfix"></div>
 
-    <div id="battle-field" class="" data-player-id="player_@ViewBag.CurrentUser.UserName"
-         data-enemy-id="player_@ViewBag.Enemy.UserName" data-battle-id="@Model.BattleId">
+    <div id="battle-field" class="" data-player-id="player_@Model.PlayerName"
+         data-enemy-id="player_@Model.EnemyName" data-battle-id="@Model.BattleId">
 
         @*<%= render partial: 'battles/player_board' %>*@
         <div id="player-board" class="board">
@@ -36,9 +36,9 @@
     <div class="chat">
 
         <div class="chat-header clearfix">
-            <img src="@Url.Content("~/Content/Icons/"+ ViewBag.Enemy.Picture)" class="round-image-40">
+            <img src="@Url.Content("~/Content/Icons/"+ Model.EnemyPicture)" class="round-image-40">
             <div class="chat-about">
-                <div class="chat-with">Chat with @ViewBag.Enemy.UserName</div>
+                <div class="chat-with">Chat with @Model.EnemyName</div>
             </div>
             <i class="fa fa-star"></i>
         </div> <!-- end chat-header -->
@@ -56,18 +56,13 @@
                 <span id="send-private" class="send">Send</span>
             </div>
         </div> <!-- end chat-message -->
-        @*<div class="chat-message clearfix">
-                <%= form_for Message.new, remote: true do |f| %>
-                <%= f.hidden_field :battle_id, :value => @battle.id %>
-                <%= f.text_area :body %>
-                <%= f.submit "Send" %>
-                <% end %>
-            </div> <!-- end chat-message -->*@
+   
 
     </div> <!-- end chat -->
 </div>
 
 @section scripts {
+    <script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
     <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
     <script src="~/signalr/hubs"></script>
     <script type="text/javascript" src="~/Scripts/handlebars.min.js"></script>
@@ -95,14 +90,14 @@
     </script>
     <script type="text/javascript">
         "use strict";
-        var currentUser = "@ViewBag.CurrentUser.UserName";
-        var enemyName = "@Model.PlayerName" === currentUser ? "@Model.EnemyName" : "@Model.PlayerName";
-        var battleId = "@Model.BattleId";
+        var battleJson = @Html.Raw(Json.Encode(Model));
+        console.table(battleJson);
+
         var templateUser = Handlebars.compile($("#player-template").html());
         var templateOther = Handlebars.compile($("#other-players-template").html());
 
 
-        console.log("battle", currentUser, "enemy", enemyName);
+        console.log("battle", battleJson.PlayerName, "enemy", battleJson.EnemyName);
 
         var battleHub = $.connection.battleHub;
 
@@ -111,27 +106,40 @@
             console.log(username, message);
             var date = new Date();
             var data = { UserName: username, Time: date.toLocaleTimeString(), Message: message }
-            var template = currentUser === username ? templateUser(data) : templateOther(data);
+            var template = battleJson.PlayerName === username ? templateUser(data) : templateOther(data);
             $("#chat-body").append(template);
             var chat = $(".chat-history");
             chat.scrollTop(chat[0].scrollHeight);
         };
 
+        battleHub.client.callFunction = function(functionName){
+            if(functionName === "enemyReady")
+            {
+                $("#messages").text("Enemy is ready").removeClass().addClass("bg-info");
+                console.log('enemyReady');
+            }
+            if(functionName === "readyToAttack"){
+                activateClick();
+                console.log('ready to attack');
+            }
+        }
+
 
 
         $.connection.hub.start().done(function () {
-            battleHub.server.join(battleId);
+            battleHub.server.join(battleJson.BattleId);
             $("#private-message").keypress(function (e) {
                 if (e.keyCode === 13) {
-                    battleHub.server.send(currentUser, battleId, $('#private-message').val());
+                    battleHub.server.send(battleJson.PlayerName, battleJson.BattleId, $('#private-message').val());
                     $('#private-message').val("");
                 }
             });
             $("#send-private").click(function () {
-                battleHub.server.send(currentUser, battleId, $('#private-message').val());
+                battleHub.server.send(battleJson.PlayerName, battleJson.BattleId, $('#private-message').val());
                 $('#private-message').val("");
             });
         });
 
     </script>
+    <script src="~/Scripts/BattleScript.js"></script>
 }

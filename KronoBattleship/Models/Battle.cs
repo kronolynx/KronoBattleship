@@ -22,7 +22,8 @@ namespace KronoBattleship.Models
             }
             PlayerName = Player.UserName;
             EnemyName = Enemy.UserName;
-            PlayerBoard = EnemyBoard = new String('x', 100);
+            //PlayerBoard = new String('x', 100);
+            PlayerBoard = EnemyBoard = "";
         }
         public int BattleId { get; set; }
 
