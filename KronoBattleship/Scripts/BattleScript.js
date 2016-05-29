@@ -413,8 +413,14 @@ var displayBoard = function () {
     displayPlayerShips(battleJson.PlayerBoard);
     displayplayerAttacks(battleJson.PlayerBoard);
     displayEnemyBoard(battleJson.EnemyBoard);
-    //readyToAttack(<%= current_user.id == @battle.active_player %>);
-    readyToAttack(battleJson.PlayerName === battleJson.ActivePlayer);
+    // empty enemyboard after displaying it
+    //If problems remove this line
+    //battleJson.EnemyBoard = "";
+    if (battleJson.EnemyBoard === "") {
+        deactivateClick()
+    } else {
+        readyToAttack(battleJson.PlayerName === battleJson.ActivePlayer);
+    }
 }
 
 
