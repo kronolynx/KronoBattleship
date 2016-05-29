@@ -88,7 +88,7 @@ function setShip(pos, char) {
  * set the initial board where the ships will be placed, TODO find a better name
  */
 function setBoardPlacement() {
-    // TODO ecmascript6 use for loop instead because old browsers may not work
+    // TODO ecmascript6 replace with for loop instead because old browsers may not work
 
     var boardArray = Array(100).fill('x');
     var boardString = "";
@@ -111,9 +111,6 @@ function setBoardPlacement() {
         }
     });
     if (boardString) {
-        //var battleField = $('#battle-field');
-        //var battleId = battleField.data('battleId');
-        //var playerId = battleField.data('playerId');
 
         $.ajax({
             url: "/Battle/Ready",
@@ -435,7 +432,7 @@ var displayBoard = function () {
 
 }
 
-var displayAttack = function(hit, attack) {
+var displayAttack = function (hit, attack) {
     var shot = $("#enemy-board #" + attack);
     if (hit) {
         console.info("hit");
@@ -446,13 +443,35 @@ var displayAttack = function(hit, attack) {
         shot.children().addClass("miss");
     }
     shot.addClass("");
-    //<% if @game_over %>
-    //  <% publish_to "/user_#{enemy_id}" do %>
-    //    $.post("/battle/<%= @battle.id %>/finish?winner=false");
-    //  <% end %>
-    //<% end %>
 }
 
+
+var gameOver = function (winner) {
+    $('#btnGiveUp').remove();
+
+    function closeModal() {
+        $("#game-over").modal('hide');
+    }
+
+    var result = "<div class='end-game ";
+    if (winner) {
+        $("#messages").text("You've won").removeClass().addClass("bg-success");
+        result += "win'><a href='#' onclick='closeModal();' class='close'>X</a><div class='winner'>";
+    }
+    else {
+        $("#messages").text("You've lost").removeClass().addClass("bg-danger");
+        result += "lose'><a href='#' onclick='closeModal();' class='close'>X</a><div class='gameover'>";
+    }
+    result += "</div>" +
+        "<a href='/' class='btn btn-default float-right'>Back Home</a></div>";
+
+    var dialog = "<div class='modal fade' id='game-over'>" + result + "</div>"
+    $("#battle-field").append(dialog);
+    $("#game-over").modal('show');
+
+    disableSeaBox($('#enemy-board .seaBox'));
+    $('#ready').remove();
+}
 /**
  * function that allows to attack the other player
  * required here because must access the variables in the controller
@@ -475,11 +494,14 @@ function activateClick() {
             url: "/Battle/Attack",
             type: "POST",
             data: { battleId: battleJson.BattleId, attack: attack },
-            success: function (e) {
+            success: function (result) {
                 deactivateClick();
-                displayAttack(e.Hit, attack);
+                displayAttack(result.Hit, attack);
                 //console.log('successful attack', e);
-                battleHub.server.attack(battleJson.EnemyName, e.Hit ? "hit" : "miss", attack, false);
+                battleHub.server.attack(battleJson.EnemyName, result.Hit ? "hit" : "miss", attack, result.GameOver);
+                if (result.GameOver) {
+                    gameOver(true);
+                }
             },
             error: function () {
                 alert('Error');

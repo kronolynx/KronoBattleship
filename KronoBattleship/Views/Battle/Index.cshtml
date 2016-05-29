@@ -132,6 +132,9 @@
             if(functionName === "miss"){
                 activateClick();$('#player-board #' + attack).append("<span class='hole miss'></span>");
             }
+            if(over){
+                gameOver(false);
+            }
         }
 
 

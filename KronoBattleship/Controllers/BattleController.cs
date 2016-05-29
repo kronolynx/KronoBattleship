@@ -45,7 +45,6 @@ namespace KronoBattleship.Controllers
             }
             var context = getContext();
             context.Clients.Group(getEnemyName(battle)).answer(User.Identity.Name, battle.BattleId);
-            //context.Clients.All.test("hello");
             return RedirectToAction("Index", new { battleId = battle.BattleId });
         }
 
@@ -55,6 +54,7 @@ namespace KronoBattleship.Controllers
         public ActionResult Attack(int battleId, int attack)
         {
             bool hit;
+            bool gameOver = false;
             string boardAfterAttack;
             var playerName = getCurrentUserName();
             var db = new ApplicationDbContext();
@@ -70,30 +70,32 @@ namespace KronoBattleship.Controllers
                 shipHit(attack, out hit, ref boardAfterAttack);
                 battle.PlayerBoard = boardAfterAttack;
             }
-            battle.ActivePlayer = getEnemyName(battle);
+            
+            if (isTheGameOver(boardAfterAttack))
+            {
+                gameOver = true;
+                battle.PlayerBoard = "";
+                battle.EnemyBoard = "";
+                battle.ActivePlayer = "";
+                if (battle.PlayerName.Equals(playerName))
+                {
+                    battle.Player.Wins++;
+                    battle.Enemy.Losses++;
+                }
+                else
+                {
+                    battle.Player.Losses++;
+                    battle.Enemy.Wins++;
+                }
+            } else
+            {
+                battle.ActivePlayer = getEnemyName(battle);
+            }
             db.SaveChanges();
-            return Json(new {Hit = hit, EnemyBoard = boardAfterAttack});
+            return Json(new {Hit = hit, GameOver = gameOver});
+            
         }
 
-    //    def edit
-    //# use a variable for hit and attack in order to use them from the view
-    //@attack = params[:attack]
-    //    @hit = hit?(@attack)
-    //if current_user.id == @battle.active_player
-    //  if @hit
-    //    PrivatePub.publish_to("/user_#{enemy_id}", "activateClick();$('#player-board ##{params[:attack]}').append(\"<div class='explosion'></div>\");")
-    //  else
-    //    PrivatePub.publish_to("/user_#{enemy_id}", "activateClick();$('#player-board ##{params[:attack]}').append(\"<span class='hole miss'></span>\");")
-    //  end
-    //  @battle.active_player = enemy_id
-    //  @battle.save
-    //  @game_over = game_over ?
-    //else
-    //end
-    //respond_to do |format|
-    //  format.js { j render partial: 'edit' }
-    //    end
-    //  end
 
         // GET: Battle/Delete/5
         public ActionResult Delete(int id)
@@ -101,21 +103,29 @@ namespace KronoBattleship.Controllers
             return View();
         }
 
-        // POST: Battle/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult GameOver(int battleId)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            var db = new ApplicationDbContext();
+            Battle battle = db.Battles.Find(battleId);
+            var currentUserName = getCurrentUserName();
 
-                return RedirectToAction("Index");
-            }
-            catch
+            battle.PlayerBoard = "";
+            battle.EnemyBoard = "";
+            battle.ActivePlayer = "";
+            if (battle.PlayerName.Equals(currentUserName))
             {
-                return View();
+                battle.Player.Wins++;
+                battle.Enemy.Losses++;
+            }else
+            {
+                battle.Player.Losses++;
+                battle.Enemy.Wins++;
             }
+            db.SaveChanges();
+            return Json(new { Hit = true, EnemyBoard = "", GameOver = true });
         }
+
 
         [HttpPost]
         public ActionResult Ready(int battleId, string playerBoard)
@@ -139,7 +149,7 @@ namespace KronoBattleship.Controllers
                     battle.ActivePlayer = battle.EnemyName;
             }
             db.SaveChanges();
-            return Json(new { EnemyBoard = enemyBoard });///BattleViewModel(battle, currentUserName));
+            return Json(new { EnemyBoard = enemyBoard });
         }
 
 
@@ -179,6 +189,13 @@ namespace KronoBattleship.Controllers
             // increase the letter at the possition of the attack
             tempBoard[attack] = (char)(enemyBoard[attack] + 1);
             enemyBoard = new string(tempBoard);
+        }
+
+        private bool isTheGameOver(string enemyboard)
+        {
+            // check if all the ships have been hit
+            return enemyboard.FirstOrDefault(c => c != 'y' && c != 'z' && ("acegikmoqs".Contains(c)))
+                             .Equals('\0');
         }
     }
 }

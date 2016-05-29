@@ -26,6 +26,7 @@ namespace KronoBattleship
             Clients.Group(enemyName).attack(functionName, attack, over);
         }
 
+
         public Task Join(string battleId)
         {
             return Groups.Add(Context.ConnectionId, battleId);
