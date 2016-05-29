@@ -1,4 +1,5 @@
 ﻿"use strict";
+
 var generateBoard = function () {
     var board = "";
     for (var i = 0; i < 100; i++) {
@@ -20,8 +21,6 @@ var playerReady = function () {
 
 var ships = [["aircraft", "aircraftV", "destroyer1", "destroyer1V", "destroyer2", "destroyer2V", "cruiser1", "cruiser1V", "cruiser2", "cruiser2V"],
     ['a', 'c', 'e', 'g', 'i', 'k', 'm', 'o', 'q', 's']];
-
-
 
 function displayPlayerShips(board) {
     var ignoreChar = "x"
@@ -50,12 +49,8 @@ function displayplayerAttacks(board) {
             }
         }
     }
-
-
-    if (board[i] != 'x' && board.charCodeAt(i) % 2 == 0) {
-
-    }
 }
+
 
 function displayEnemyBoard(board) {
     var ignoreChar = "xacegikmoqs"
@@ -323,7 +318,7 @@ function comparePosition(calculatedPosShipDragged, pos2, size1, size2, step1, st
     return false;
 }
 
-//// if the user board is null then we need to create it use String.IsNullOrEmpty
+// if the user board is null then we need to display the shipyard
 var setBoard = function () {
     var placementBoard = function () {
         var placementBoard =
@@ -356,14 +351,12 @@ var setBoard = function () {
     $('#player-board').addClass('placementBoard');
     $('#messages').text("Place your ships").removeClass().addClass("bg-info");
 
-
     $('.ship').draggable({
         containment: '.placementBoard',
         snap: ".seaBox",
         grid: [40, 40],
         revert: "invalid"
     });
-
 
     $('.seaBox').droppable({
         tolerance: "intersect",
@@ -403,16 +396,12 @@ var setBoard = function () {
             } else {
                 ship.attr("id", ship_id);
             }
-
-
         }
     });
 
     $("#ready").click(function () {
         setBoardPlacement();
     });
-
-
 }
 
 // after the player has set the ships we must display the enemy board
@@ -421,16 +410,13 @@ var displayBoard = function () {
     $("#enemy-board").show();
     $('#btnGiveUp').show();
 
-
-    //var board = "<%= @player_board %>";
-    //var enemyBoard = "<%= @enemy_board %>"
     displayPlayerShips(battleJson.PlayerBoard);
     displayplayerAttacks(battleJson.PlayerBoard);
     displayEnemyBoard(battleJson.EnemyBoard);
     //readyToAttack(<%= current_user.id == @battle.active_player %>);
     readyToAttack(battleJson.PlayerName === battleJson.ActivePlayer);
-
 }
+
 
 var displayAttack = function (hit, attack) {
     var shot = $("#enemy-board #" + attack);
@@ -442,8 +428,8 @@ var displayAttack = function (hit, attack) {
         console.info("miss");
         shot.children().addClass("miss");
     }
-    shot.addClass("");
-}
+    shot.addClass("shot").off("click mouseenter");
+};
 
 
 var gameOver = function (winner) {
@@ -487,9 +473,7 @@ function activateClick() {
     });
     enemySeabox.on("click", function () {
 
-        //var battleId = "<%= @battle.id %>";
         var attack = $(this).attr("id");
-
         $.ajax({
             url: "/Battle/Attack",
             type: "POST",
@@ -506,7 +490,6 @@ function activateClick() {
             error: function () {
                 alert('Error');
             }
-
         });
     });
 }
