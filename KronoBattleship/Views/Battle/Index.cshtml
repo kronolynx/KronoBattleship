@@ -13,6 +13,7 @@
         <div id="btnGiveUp">
 
             @* <%= button_to "Give Up", finish_path(@battle), class: "btn btn-warning", :winner => false, :remote => true %>*@
+            <button id="btn-giveup" class="btn btn-warning">Give Up</button>
         </div>
     </div>
     <div class="clearfix"></div>
@@ -20,7 +21,6 @@
     <div id="battle-field" class="" data-player-id="player_@Model.PlayerName"
          data-enemy-id="player_@Model.EnemyName" data-battle-id="@Model.BattleId">
 
-        @*<%= render partial: 'battles/player_board' %>*@
         <div id="player-board" class="board">
 
         </div>
@@ -53,7 +53,7 @@
         <div class="chat-message clearfix">
             <div class="write-form">
                 <textarea id="private-message" placeholder="Type your message" rows="2"></textarea>
-                <span id="send-private" class="send">Send</span>
+                <button id="send-private" class="send btn btn-default btn-lg btn-block">Send</button>
             </div>
         </div> <!-- end chat-message -->
    
@@ -91,13 +91,11 @@
     <script type="text/javascript">
         "use strict";
         var battleJson = @Html.Raw(Json.Encode(Model));
-        //console.table(battleJson);
 
         var templateUser = Handlebars.compile($("#player-template").html());
         var templateOther = Handlebars.compile($("#other-players-template").html());
 
-
-        console.log("battle", battleJson.PlayerName, "enemy", battleJson.EnemyName);
+        //console.log("battle", battleJson.PlayerName, "enemy", battleJson.EnemyName);
 
         var battleHub = $.connection.battleHub;
 
@@ -123,7 +121,7 @@
             }
         }
 
-        battleHub.client.attack = function(functionName, attack, over){
+        battleHub.client.attack = function(functionName, attack){
             if(functionName === "hit"){
                 activateClick();
                 $('#player-board #' + attack).append("<div class='explosion'></div>");
@@ -131,9 +129,10 @@
             if(functionName === "miss"){
                 activateClick();$('#player-board #' + attack).append("<span class='hole miss'></span>");
             }
-            if(over){
-                gameOver(false);
-            }
+        }
+
+        battleHub.client.gameOver = function(winner){ 
+                gameOver(winner);
         }
 
 

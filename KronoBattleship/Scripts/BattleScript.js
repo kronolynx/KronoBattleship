@@ -336,7 +336,7 @@ var setBoard = function () {
             '<div class="ship" id="destroyer2"></div>' +
             '</div>' +
             '<form>' +
-            '<a href="#" id="ready" class="btn btn-primary btn-lg btn-block alt">Ready</a>' +
+            '<button id="ready" class="btn btn-primary btn-lg btn-block alt">Ready</button>' +
             '</form>' +
             '</div>' +
             '</div>';
@@ -346,7 +346,6 @@ var setBoard = function () {
     var placementBoard = placementBoard();
 
     $('#enemy-board').hide();
-    $('#btnGiveUp').hide();
     $('#battle-field').append(placementBoard);
     $('#player-board').addClass('placementBoard');
     $('#messages').text("Place your ships").removeClass().addClass("bg-info");
@@ -439,7 +438,7 @@ var displayAttack = function (hit, attack) {
 
 
 var gameOver = function (winner) {
-    $('#btnGiveUp').remove();
+    $('#btn-giveup').prop("disabled", true);
 
     function closeModal() {
         $("#game-over").modal('hide');
@@ -462,7 +461,7 @@ var gameOver = function (winner) {
     $("#game-over").modal('show');
 
     disableSeaBox($('#enemy-board .seaBox'));
-    $('#ready').remove();
+    $('#ready').prop("disabled", true);
 }
 /**
  * function that allows to attack the other player
@@ -478,19 +477,19 @@ function activateClick() {
         $(this).removeClass("target");
     });
     enemySeabox.on("click", function () {
-
+        deactivateClick();
         var attack = $(this).attr("id");
         $.ajax({
             url: "/Battle/Attack",
             type: "POST",
             data: { battleId: battleJson.BattleId, attack: attack },
             success: function (result) {
-                deactivateClick();
                 displayAttack(result.Hit, attack);
                 //console.log('successful attack', e);
                 battleHub.server.attack(battleJson.EnemyName, result.Hit ? "hit" : "miss", attack, result.GameOver);
                 if (result.GameOver) {
                     gameOver(true);
+                    battleHub.server.finishGame(battleJson.EnemyName, !result.GameOver);
                 }
             },
             error: function () {
@@ -517,6 +516,24 @@ function disableSeaBox(enemySeabox) {
     });
 }
 
+$("#btn-giveup").click(function () {
+    $(this).prop("disabled", true);
+    var enemySeabox = $('#enemy-board .seaBox');
+    disableSeaBox(enemySeabox);
+    $.ajax({
+        url: "/Battle/GameOver",
+        type: "POST",
+        data: { battleId: battleJson.BattleId},
+        success: function (result) {
+            gameOver(false);
+            battleHub.server.finishGame(battleJson.EnemyName, true);
+        },
+        error: function () {
+            alert('Error');
+        }
+    });
+
+});
 
 $(document).ready(function () {
     var board = generateBoard();

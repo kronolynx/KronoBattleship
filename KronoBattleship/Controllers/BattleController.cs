@@ -48,7 +48,7 @@ namespace KronoBattleship.Controllers
             return RedirectToAction("Index", new { battleId = battle.BattleId });
         }
 
- 
+
         // POST: Battle/Attack/5
         [HttpPost]
         public ActionResult Attack(int battleId, int attack)
@@ -64,13 +64,14 @@ namespace KronoBattleship.Controllers
                 boardAfterAttack = battle.EnemyBoard;
                 shipHit(attack, out hit, ref boardAfterAttack);
                 battle.EnemyBoard = boardAfterAttack;
-            }  else
+            }
+            else
             {
                 boardAfterAttack = battle.PlayerBoard;
                 shipHit(attack, out hit, ref boardAfterAttack);
                 battle.PlayerBoard = boardAfterAttack;
             }
-            
+
             if (isTheGameOver(boardAfterAttack))
             {
                 gameOver = true;
@@ -87,13 +88,14 @@ namespace KronoBattleship.Controllers
                     battle.Player.Losses++;
                     battle.Enemy.Wins++;
                 }
-            } else
+            }
+            else
             {
                 battle.ActivePlayer = getEnemyName(battle);
             }
             db.SaveChanges();
-            return Json(new {Hit = hit, GameOver = gameOver});
-            
+            return Json(new { Hit = hit, GameOver = gameOver });
+
         }
 
 
@@ -104,7 +106,7 @@ namespace KronoBattleship.Controllers
         }
 
         [HttpPost]
-        public ActionResult GameOver(int battleId)
+        public void GameOver(int battleId)
         {
             var db = new ApplicationDbContext();
             Battle battle = db.Battles.Find(battleId);
@@ -115,15 +117,15 @@ namespace KronoBattleship.Controllers
             battle.ActivePlayer = "";
             if (battle.PlayerName.Equals(currentUserName))
             {
-                battle.Player.Wins++;
-                battle.Enemy.Losses++;
-            }else
-            {
                 battle.Player.Losses++;
                 battle.Enemy.Wins++;
             }
+            else
+            {
+                battle.Player.Wins++;
+                battle.Enemy.Losses++;
+            }
             db.SaveChanges();
-            return Json(new { Hit = true, EnemyBoard = "", GameOver = true });
         }
 
 

@@ -17,7 +17,6 @@ namespace KronoBattleship
         //TODO check if the callback can be sent from javascript
         public void CallFunction(string enemyName, string functionName)
         {
-            
             Clients.Group(enemyName).callFunction(functionName);
         }
 
@@ -26,6 +25,10 @@ namespace KronoBattleship
             Clients.Group(enemyName).attack(functionName, attack, over);
         }
 
+        public void FinishGame(string enemyName, bool winner)
+        {
+            Clients.Group(enemyName).gameOver(winner);
+        }
 
         public Task Join(string battleId)
         {

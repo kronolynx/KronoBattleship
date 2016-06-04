@@ -11,22 +11,14 @@ namespace KronoBattleship.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Your application description page.";
-            
+            ViewBag.Message = "BattleShip";
+            if (User.Identity.IsAuthenticated)
+                return RedirectToAction("Index", "Chat");
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-            return View();
-        }
-
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }

@@ -190,6 +190,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Migrations\201605142121350_Initial.cs" />
     <Compile Include="Migrations\201605142121350_Initial.Designer.cs">
       <DependentUpon>201605142121350_Initial.cs</DependentUpon>
@@ -223,9 +224,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Icons\1.png" />
     <Content Include="Content\Icons\10.png" />
     <Content Include="Content\Icons\11.png" />
@@ -249,6 +248,7 @@
     <Content Include="Content\Icons\8.png" />
     <Content Include="Content\Icons\9.png" />
     <Content Include="Content\Images\bg.png" />
+    <Content Include="Content\Images\board_game.jpg" />
     <Content Include="Content\Images\explosion.gif" />
     <Content Include="Content\Images\gameover.png" />
     <Content Include="Content\Images\medal.png" />
@@ -310,10 +310,6 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="App_Readme\Handlebarsjs_README.md" />
     <Content Include="App_Readme\Handlebarsjs_LICENSE" />
     <Content Include="Content\Images\.keep" />
@@ -366,7 +362,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
