@@ -4,12 +4,20 @@
 }
 
 .btn {
-    height: 36px;
+    
+}
+.btn-36 {
     padding: 5px 15px;
     font-size: 16px;
+    height: 36px;
+}
+
+.container-fluid {
+    padding: 0 37px;
 }
 /* Set padding to keep content from hitting the edges */
 .body-content {
+    min-width: 464px;
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -33,6 +41,11 @@
 
 body {
   background-image: url("Images/bg.png");
+  background-repeat: repeat;
+}
+
+.chat-history {
+    background-image: url("Images/chat-bg.png");
   background-repeat: repeat;
 }
 
@@ -162,7 +175,8 @@ body {
 }
 
 .people-list {
-  width: 260px;
+  /*width: 260px;*/
+  width: 100%;
   float: left;
   margin-bottom: 25px;
   background: #444753;
@@ -214,7 +228,7 @@ body {
 .chat {
   float: left;
   width: 100%;
-  background: #f5f5f5;
+  background: #EEEEEE;/*#f5f5f5;*/
   border-radius: 4px;
   border: 1px solid #ccc;
   color: #434651;
@@ -223,23 +237,23 @@ body {
 .chat li {
   list-style: none;
 }
-.chat .chat-header {
+.chat-header {
   padding: 20px;
   border-bottom: 2px solid white;
 }
-.chat .chat-header img {
+.chat-header img {
   float: left;
 }
-.chat .chat-header .chat-about {
+.chat-header .chat-about {
   float: left;
   padding-left: 10px;
   margin-top: 6px;
 }
-.chat .chat-header .chat-with {
+.chat-header .chat-with {
   font-weight: bold;
   font-size: 16px;
 }
-.chat .chat-header .chat-num-messages {
+.chat-header .chat-num-messages {
   color: #92959E;
 }
 .chat .chat-header .fa-star {
@@ -248,20 +262,20 @@ body {
   font-size: 20px;
   margin-top: 12px;
 }
-.chat .chat-history {
+.chat-history {
   padding: 30px 20px 20px 0px;
   border-bottom: 2px solid white;
   overflow-y: scroll;
   height: 575px;
 }
-.chat .chat-history .message-data {
+.chat-history .message-data {
   margin-bottom: 15px;
 }
-.chat .chat-history .message-data-time {
+.chat-history .message-data-time {
   color: #a8aab1;
   padding-left: 6px;
 }
-.chat .chat-history .message {
+.chat-history .message {
   color: white;
   padding: 10px 20px;
   line-height: 26px;
@@ -271,7 +285,7 @@ body {
   width: 90%;
   position: relative;
 }
-.chat .chat-history .message:after {
+.chat-history .message:after {
   bottom: 100%;
   left: 7%;
   border: solid transparent;
@@ -295,7 +309,7 @@ body {
   left: 93%;
 }
 .chat .chat-message {
-  padding: 23px 10px;
+  padding: 2px 10px;
 }
 .chat .chat-message textarea {
   padding: 10px 20px;
@@ -377,8 +391,8 @@ body {
   height: 150px;
 }
 .write-form textarea {
-  height: 75px;
-  margin: 17px 2%;
+  height: 89px;
+  margin: 12px 2%;
   width: 96%;
   outline: none;
   padding: 15px;
@@ -414,7 +428,8 @@ body {
   border-radius: 4px;
   font-weight: bold;
   z-index: -50;
-  display: inline-block;
+  float: left;
+  /*display: inline-block;*/
   width: 400px;
   height: 400px;
   margin: 7px;

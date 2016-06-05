@@ -249,6 +249,7 @@
     <Content Include="Content\Icons\9.png" />
     <Content Include="Content\Images\bg.png" />
     <Content Include="Content\Images\board_game.jpg" />
+    <Content Include="Content\Images\chat-bg.png" />
     <Content Include="Content\Images\explosion.gif" />
     <Content Include="Content\Images\gameover.png" />
     <Content Include="Content\Images\medal.png" />

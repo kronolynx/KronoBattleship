@@ -3,25 +3,16 @@
     ViewBag.Title = "Chat";
 }
 
-<script>
-    var jsonUsers = @Html.Raw(Json.Encode(Model));
-    console.log(jsonUsers)
-</script>
 <h2>Chat</h2>
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
         <div class="people-list" id="people-list">
-            <!--<div class="search">
-              <input type="text" placeholder="search" />
-              <i class="fa fa-search"></i>
-            </div>-->
             <!-- User list -->
             @{ Html.RenderPartial("_UserList", Model);  }
             <!-- end user list -->
-
         </div>
     </div>
-    <div class="col-md-9">
+    <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
         <!-- Chat -->
         <div class="chat">
             <div class="chat-header clearfix">
@@ -36,7 +27,6 @@
             <div class="chat-message clearfix">
                 <div class="write-form">
                     <textarea id="public-message" placeholder="Type your message" rows="2"></textarea>
-                    <span id="send-public" class="send">Send</span>
                 </div>
             </div> <!-- end chat-message -->
         </div> <!-- end chat -->
@@ -102,11 +92,12 @@
     </script>
     <script type="text/javascript">
         "use strict";
+        var jsonUsers = @Html.Raw(Json.Encode(Model));
         var currentUser = "@ViewBag.CurrentUser.UserName";
-        console.log(currentUser);
+       // console.log(currentUser);
         var templateUser = Handlebars.compile($("#player-template").html());
         var templateOther = Handlebars.compile($("#other-players-template").html());
-        
+
         var challengeToFight  = function(enemy){
             console.log("fight", enemy);
             connectionStatus.server.battlePrompt(enemy, currentUser);
@@ -145,7 +136,7 @@
 
         connectionStatus.client.displayPrompt= function(player){
             //var answer = prompt(text, "");
-            // TODO set the started player in the modal 
+            // TODO set the started player in the modal
             $("#modalChallenger").text(player);
             $("#challengeToBattleModal").modal(
                 {backdrop: 'static',
@@ -175,7 +166,7 @@
                 alert("reject " + enemy + answer);
             };
         }
-        
+
         $.connection.hub.start().done(function () {
 
             //$('[id*="battle-btn-"]').click(console.log(this.id));
@@ -187,10 +178,6 @@
                     chat.server.send(currentUser, $('#public-message').val());
                     $('#public-message').val("");
                 }
-            });
-            $("#send-public").click(function () {
-                chat.server.send(currentUser, $('#public-message').val());
-                $('#public-message').val("");
             });
         });
         // });

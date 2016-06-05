@@ -5,62 +5,55 @@
 
 <h2>Index</h2>
 
+<div class="row">
+    <div class="col-sm-7 col-md-6 col-lg-9" id="battle">
+        <div class="row">
+            <div id="info-div">
 
-<div class="col-md-6" id="battle">
-    <div id="info-div">
+                <div id="messages"></div>
+                <div id="btnGiveUp">
+                    <button id="btn-giveup" class="btn btn-warning btn-36">Give Up</button>
+                </div>
+            </div>
+            <div class="clearfix"></div>
 
-        <div id="messages"></div>
-        <div id="btnGiveUp">
+            <div id="battle-field" class="" data-player-id="player_@Model.PlayerName"
+                 data-enemy-id="player_@Model.EnemyName" data-battle-id="@Model.BattleId">
 
-            @* <%= button_to "Give Up", finish_path(@battle), class: "btn btn-warning", :winner => false, :remote => true %>*@
-            <button id="btn-giveup" class="btn btn-warning">Give Up</button>
+                <div id="player-board" class="board">
+
+                </div>
+
+                <div id="enemy-board" class="board">
+
+                </div>
+            </div>
         </div>
     </div>
-    <div class="clearfix"></div>
 
-    <div id="battle-field" class="" data-player-id="player_@Model.PlayerName"
-         data-enemy-id="player_@Model.EnemyName" data-battle-id="@Model.BattleId">
+    <div class="col-sm-5 col-md-6 col-lg-3">
+        <div class="chat">
 
-        <div id="player-board" class="board">
+            <div class="chat-header clearfix">
+                <img src="@Url.Content("~/Content/Icons/"+ Model.EnemyPicture)" class="round-image-40">
+                <div class="chat-about">
+                    <div class="chat-with">Chat with @Model.EnemyName</div>
+                </div>
+                <i class="fa fa-star"></i>
+            </div> <!-- end chat-header -->
 
-        </div>
+            <div class="chat-history">
+                <ul id="chat-body"></ul>
 
-        <div id="enemy-board" class="board">
-
-        </div>
+            </div> <!-- end chat-history -->
+            <div class="chat-message clearfix">
+                <div class="write-form">
+                    <textarea id="private-message" placeholder="Type your message" rows="2"></textarea>
+                </div>
+            </div> <!-- end chat-message -->
+        </div> <!-- end chat -->
     </div>
-
 </div>
-
-<div class="col-md-4">
-    <div class="chat">
-
-        <div class="chat-header clearfix">
-            <img src="@Url.Content("~/Content/Icons/"+ Model.EnemyPicture)" class="round-image-40">
-            <div class="chat-about">
-                <div class="chat-with">Chat with @Model.EnemyName</div>
-            </div>
-            <i class="fa fa-star"></i>
-        </div> <!-- end chat-header -->
-
-        <div class="chat-history">
-            <ul id="chat-body"></ul>
-            @*<ul id="chatbox_<%= @battle.id %>">
-                    <%= render @battle.messages %>
-                </ul>*@
-
-        </div> <!-- end chat-history -->
-        <div class="chat-message clearfix">
-            <div class="write-form">
-                <textarea id="private-message" placeholder="Type your message" rows="2"></textarea>
-                <button id="send-private" class="send btn btn-default btn-lg btn-block">Send</button>
-            </div>
-        </div> <!-- end chat-message -->
-   
-
-    </div> <!-- end chat -->
-</div>
-
 @section scripts {
     <script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
     <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
@@ -131,8 +124,8 @@
             }
         }
 
-        battleHub.client.gameOver = function(winner){ 
-                gameOver(winner);
+        battleHub.client.gameOver = function(winner){
+            gameOver(winner);
         }
 
 

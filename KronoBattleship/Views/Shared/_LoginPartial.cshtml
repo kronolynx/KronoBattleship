@@ -7,7 +7,7 @@
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
-        <li>
+        <li class="hidden-xs">
             <img src="@Url.Content("~/Content/Icons/"+ User.Identity.GetPicture())" class="round-image-40 nav-padding">
         </li>
         <li>

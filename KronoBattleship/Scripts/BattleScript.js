@@ -106,7 +106,7 @@ function setBoardPlacement() {
         }
     });
     if (boardString) {
-
+        console.table(battleJson);
         $.ajax({
             url: "/Battle/Ready",
             type: "POST",
@@ -335,9 +335,7 @@ var setBoard = function () {
             '<div class="spacer"> </div>' +
             '<div class="ship" id="destroyer2"></div>' +
             '</div>' +
-            '<form>' +
-            '<button id="ready" class="btn btn-primary btn-lg btn-block alt">Ready</button>' +
-            '</form>' +
+            '<button id="ready" class="btn btn-primary btn-block btn-36 alt">Ready</button>' +
             '</div>' +
             '</div>';
         return placementBoard;
