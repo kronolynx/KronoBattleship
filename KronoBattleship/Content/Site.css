@@ -3,6 +3,9 @@
     padding-bottom: 20px;
 }
 
+.people-list{
+    overflow-y: scroll;
+}
 .jumbotron {
     margin-top:40px;
     background-image: url("Images/battleship.jpg");
@@ -23,6 +26,15 @@
     font-size: 18px;
     line-height: 1.33333;
     padding: 10px 16px;
+}
+.btn-xs {
+    border: none;
+    line-height: 22px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 1px 5px;
+    font-size: 11px;
+    border-radius: 3px;
 }
 .btn-36 {
     padding: 5px 15px;

@@ -90,6 +90,18 @@
             </div>
         </li>
     </script>
+    <script id="player-li" type="text/x-handlebars-template">
+        <li class="clearfix" id="chat_user_{{UserName}}">
+            <img src="/Content/Icons/{{Picture}}" class="round-image-40">
+            <div class="about">
+                <div class="name">{{UserName}}</div>
+                <div class="status">
+                    <span id="status-icon-{{UserName}}" class="fa fa-bullseye offline"></span><span id="status-user-{{UserName}}">offline</span>
+                </div>
+            </div>
+            <div id="battle-btn-{{UserName}}" data-toggle="modal" data-target="#waitModal" onclick="challengeToFight('{{UserName}}')" class="btn btn-success btn-xs start-battle" style="display: none">Battle</div>
+        </li>
+    </script>
     <script type="text/javascript">
         "use strict";
         var jsonUsers = @Html.Raw(Json.Encode(Model));
@@ -97,6 +109,7 @@
        // console.log(currentUser);
         var templateUser = Handlebars.compile($("#player-template").html());
         var templateOther = Handlebars.compile($("#other-players-template").html());
+        var templatePlayerLi = Handlebars.compile($("#player-li").html());
 
         var challengeToFight  = function(enemy){
             console.log("fight", enemy);
@@ -114,6 +127,14 @@
         }
         connectionStatus.client.logout = function (id) {
             setOffline(id);
+        }
+        connectionStatus.client.newUser = function(id, userName, picture){
+            
+            var temp = {Id: id,UserName: userName, Picture: picture, Wins: 0, Losses: 0 };
+            console.log("new",temp);
+            jsonUsers.push(temp);
+            $("#people-list").append(templatePlayerLi(temp));
+
         }
 
         connectionStatus.client.displayOnline = function (list) {
