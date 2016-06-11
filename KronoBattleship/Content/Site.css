@@ -12,6 +12,23 @@
     background-size: cover;
     height: 550px;
 }
+.modal-dialog {
+    margin-top: 80px;
+}
+.fight-refused {
+    background-image: url("Images/swords.png");
+    height: 275px;
+    background-size:275px;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+.duel{
+    background-image: url("Images/duel.png");
+    height: 275px;
+    background-size:275px;
+    background-repeat:no-repeat;
+    background-position:center;
+}
 .jumbotron h1 {
     color: #fff;
     text-shadow: 2px 2px #000;

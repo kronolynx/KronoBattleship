@@ -225,6 +225,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Icons\1.png" />
     <Content Include="Content\Icons\10.png" />
     <Content Include="Content\Icons\11.png" />
@@ -251,6 +252,7 @@
     <Content Include="Content\Images\bg.png" />
     <Content Include="Content\Images\board_game.jpg" />
     <Content Include="Content\Images\chat-bg.png" />
+    <Content Include="Content\Images\duel.png" />
     <Content Include="Content\Images\explosion.gif" />
     <Content Include="Content\Images\funny-monkey.png" />
     <Content Include="Content\Images\gameover.png" />
@@ -269,6 +271,7 @@
     <Content Include="Content\Images\ship6v.png" />
     <Content Include="Content\Images\shipLong.png" />
     <Content Include="Content\Images\shipLongV.png" />
+    <Content Include="Content\Images\swords.png" />
     <Content Include="Content\Images\water.jpg" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -307,6 +310,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
@@ -323,6 +327,11 @@
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="ClassDiagram1.cd" />
     <Content Include="ClassDiagram2.cd" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Properties\PublishProfiles\KronoBattleship - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\BattleScript.js" />

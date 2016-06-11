@@ -39,10 +39,13 @@
 <div id="challengeToBattleModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Battle</h4>
-                <p><span id="modalChallenger"></span> has challenged you to a duel</p>
+            <div class="modal-body text-center">
+                <button type="button" class="close" onclick="battleAnswer(false)" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"></h4>
+                <div class="duel img-responsive"></div>
+                <h3>You've been challenged by:</h3>
+                <h2><span id="modalChallenger"></span></h2>
+                <h3>Do you accept?</h3>
                 <button type="button" class="btn btn-default" onclick="battleAnswer(true)" data-dismiss="modal">Accept</button>
                 <button type="button" class="btn btn-default" onclick="battleAnswer(false)" data-dismiss="modal">Reject</button>
             </div>
@@ -52,12 +55,27 @@
 
 <div id="waitModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content text-center">
             <div class="modal-body">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Waiting</h4>
-                <p>battle ?</p>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <div class="duel img-responsive"></div>
+                <h2>Waiting for enemy</h2>
+                <p></p>
+                
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="rejectModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content text-center">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="fight-refused"></div>
+                <h2>Battle Rejected</h2>
+                <p></p>
+                
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -112,7 +130,7 @@
         var templatePlayerLi = Handlebars.compile($("#player-li").html());
 
         var challengeToFight  = function(enemy){
-            console.log("fight", enemy);
+            //console.log("fight", enemy);
             connectionStatus.server.battlePrompt(enemy, currentUser);
         };
 
@@ -131,7 +149,7 @@
         connectionStatus.client.newUser = function(id, userName, picture){
             
             var temp = {Id: id,UserName: userName, Picture: picture, Wins: 0, Losses: 0 };
-            console.log("new",temp);
+            //console.log("new",temp);
             jsonUsers.push(temp);
             $("#people-list").append(templatePlayerLi(temp));
 
@@ -171,6 +189,8 @@
             //connectionStatus.server.battleAnswer(player, answer);
             if(answer)
                 redirect("/Battle/Create", "POST",  { user1: currentUser, user2: player});
+            else
+                connectionStatus.server.battleAnswer(player, -1);
         }
 
         connectionStatus.client.test = function(ans){
@@ -184,7 +204,8 @@
                 //alert("accept " + enemy + answer);
                 redirect("/Battle/Index",  "GET",  { battleId: answer});
             }else {
-                alert("reject " + enemy + answer);
+                $("#waitModal").modal("hide");
+                $("#rejectModal").modal();
             };
         }
 

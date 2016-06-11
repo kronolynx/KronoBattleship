@@ -22,7 +22,7 @@ namespace KronoBattleship
             Clients.Group(enemy).displayPrompt(player);
         }
 
-        public void battleAnswer(string player,bool answer)
+        public void battleAnswer(string player,int answer)
         {
             Clients.Group(player).answer(Context.User.Identity.Name, answer);
         }
