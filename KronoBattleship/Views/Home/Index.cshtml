@@ -2,5 +2,10 @@
     ViewBag.Title = "Welcome";
 }
 
-
-<h1>BattleShip</h1>
+<div class="container">
+    <div class="text-center jumbotron">
+        <h1>BattleShip</h1>
+        @Html.ActionLink("Sign up now", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" , @class = "btn btn-primary btn-lg"
+        })
+    </div>
+</div>

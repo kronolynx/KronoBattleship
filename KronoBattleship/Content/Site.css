@@ -3,8 +3,26 @@
     padding-bottom: 20px;
 }
 
+.jumbotron {
+    margin-top:40px;
+    background-image: url("Images/battleship.jpg");
+    background-size: cover;
+    height: 550px;
+}
+.jumbotron h1 {
+    color: #fff;
+    text-shadow: 2px 2px #000;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: -1px;
+    font-weight: bold;
+}
+
 .btn {
-    
+    border-radius: 6px;
+    font-size: 18px;
+    line-height: 1.33333;
+    padding: 10px 16px;
 }
 .btn-36 {
     padding: 5px 15px;

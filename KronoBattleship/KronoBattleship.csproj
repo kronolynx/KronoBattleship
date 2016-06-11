@@ -247,10 +247,12 @@
     <Content Include="Content\Icons\7.png" />
     <Content Include="Content\Icons\8.png" />
     <Content Include="Content\Icons\9.png" />
+    <Content Include="Content\Images\battleship.jpg" />
     <Content Include="Content\Images\bg.png" />
     <Content Include="Content\Images\board_game.jpg" />
     <Content Include="Content\Images\chat-bg.png" />
     <Content Include="Content\Images\explosion.gif" />
+    <Content Include="Content\Images\funny-monkey.png" />
     <Content Include="Content\Images\gameover.png" />
     <Content Include="Content\Images\medal.png" />
     <Content Include="Content\Images\ship1.png" />
@@ -319,6 +321,8 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="ClassDiagram1.cd" />
+    <Content Include="ClassDiagram2.cd" />
     <None Include="Properties\PublishProfiles\KronoBattleship - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\BattleScript.js" />
