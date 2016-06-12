@@ -51,7 +51,7 @@
 <p>After the ships have been positioned, the game proceeds in a series of rounds. In each round, each player takes a turn to announce a target square in the opponent's grid which is to be shot at. The opponent announces whether or not the square is occupied
     by a ship, and if it is a "miss", the player marks their primary grid with a white peg; if a "hit" they mark this on their own primary grid with a red peg. The attacking player notes the hit or miss on their own "tracking" grid with the appropriate
     color peg (red for "hit", white for "miss"), in order to build up a picture of the opponent's fleet.</p>
-<p>When all of the squares of a ship have been hit, the ship is sunk, and the ship's owner announces this (e.g. "You sank my battleship!"). If all of a player's ships have been sunk, the game is over and their opponent wins.</p>
+<p>When all of the squares of a ship have been hit, the ship is sunk. If all of a player's ships have been sunk, the game is over and their opponent wins.</p>
 
 
 
