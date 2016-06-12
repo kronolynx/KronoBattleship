@@ -10,7 +10,6 @@ namespace KronoBattleship
         {
             bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
                       "~/Scripts/jquery-{version}.js",
-                      "~/Scripts/jquery.validate*",
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
                       "~/Scripts/ChatScript.js"));
@@ -29,6 +28,9 @@ namespace KronoBattleship
             bundles.Add(new ScriptBundle("~/bundles/chat").Include(
                     "~/Scripts/jquery.signalR-2.2.0.min.js",
                     "~/Scripts/handlebars.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+            "~/Scripts/jquery.validate*"));
 
 
             BundleTable.EnableOptimizations = true;

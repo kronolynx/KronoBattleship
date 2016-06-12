@@ -7,20 +7,50 @@
 	background-color: #3e3f3a;
 	border-color: #3e3f3a;
 	height:60px;
+    font-weight:500;
+}
+.navbar .nav>li>a {
+	font-size: 16px !important;
+	padding-top: 20px;
+    color:grey;
+    
+}
+.navbar .nav>li>a:hover, .navbar .nav>li>a:active {
+	color:whitesmoke;
 }
 .navbar-default .navbar-brand {
 	color: #ffffff;
+    padding-top: 20px;
 }
 
-.people-list {
-	overflow-y: scroll;
-}
 
-.jumbotron {
+.homeJumbo {
 	margin-top: 40px;
 	background-image: url("Images/battleship.jpg");
 	background-size: cover;
 	height: 550px;
+}
+
+
+
+.loginRegister {
+    height: 550px;
+    background-color: #3e3f3a;
+    font-size: 17px;
+    font-weight: 500;
+    color:whitesmoke;
+    text-shadow: 2px 2px 2px #333;
+    background-image: url("Images/loginShip.png");
+    background-size: cover;
+	background-repeat: no-repeat;
+}
+.loginRegister a{
+    font-size: 22px;
+    text-decoration: none;
+    color: whitesmoke;
+}
+.loginRegister a:hover{
+    font-size: 25px;
 }
 
 .modal-dialog {
@@ -259,6 +289,9 @@ body {
 	/*width: 260px;*/
 	width: 100%;
 	float: left;
+    margin-top: 7px;
+    height: 775px;
+	overflow-y: scroll;
 	margin-bottom: 25px;
 	background: #444753;
 	border-radius: 5px;
