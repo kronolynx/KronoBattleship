@@ -121,7 +121,6 @@
     </script>
     <script type="text/javascript">
         "use strict";
-        var jsonUsers = @Html.Raw(Json.Encode(Model));
         var currentUser = "@ViewBag.CurrentUser.UserName";
        // console.log(currentUser);
         var templateUser = Handlebars.compile($("#player-template").html());
@@ -148,8 +147,6 @@
         connectionStatus.client.newUser = function(id, userName, picture){
             
             var temp = {Id: id,UserName: userName, Picture: picture, Wins: 0, Losses: 0 };
-            //console.log("new",temp);
-            jsonUsers.push(temp);
             $("#people-list").append(templatePlayerLi(temp));
 
         }
