@@ -81,10 +81,9 @@
 </div><!-- /.modal -->
 
 @section scripts {
-    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
-    @* TODO if problems add ~/ to signalr *@
+    @Scripts.Render("~/bundles/chat")
     <script src="~/signalr/hubs"></script>
-    <script type="text/javascript" src="~/Scripts/handlebars.min.js"></script>
+    
     <script id="player-template" type="text/x-handlebars-template">
         <li>
             <div class="message-data">

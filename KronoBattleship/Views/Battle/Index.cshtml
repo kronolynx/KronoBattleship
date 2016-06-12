@@ -68,10 +68,9 @@
 </div><!-- /.modal -->
 
 @section scripts {
-    <script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
-    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    @Scripts.Render("~/bundles/battle")
+   
     <script src="~/signalr/hubs"></script>
-    <script type="text/javascript" src="~/Scripts/handlebars.min.js"></script>
     <script id="player-template" type="text/x-handlebars-template">
         <li>
             <div class="message-data">
@@ -158,5 +157,4 @@
         });
 
     </script>
-    <script src="~/Scripts/BattleScript.js"></script>
 }

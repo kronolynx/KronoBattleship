@@ -20,6 +20,17 @@ namespace KronoBattleship
                       "~/Content/font-awesome.css",
                       "~/Content/Site.css"));
 
+            bundles.Add(new ScriptBundle("~/bundles/battle").Include(
+                    "~/Scripts/jquery-ui-1.11.4.min.js",
+                    "~/Scripts/jquery.signalR-2.2.0.min.js",
+                    "~/Scripts/handlebars.min.js",
+                    "~/Scripts/BattleScript.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/chat").Include(
+                    "~/Scripts/jquery.signalR-2.2.0.min.js",
+                    "~/Scripts/handlebars.min.js"));
+
+
             BundleTable.EnableOptimizations = true;
         }
     }
