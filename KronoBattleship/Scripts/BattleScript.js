@@ -123,8 +123,7 @@ function setBoardPlacement() {
             }
         });
     } else {
-        //TODO display modal
-        alert("All ships must be placed");
+        $("#placeShipsModal").modal();
     }
 }
 

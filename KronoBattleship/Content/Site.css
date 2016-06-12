@@ -22,6 +22,13 @@
     background-repeat:no-repeat;
     background-position:center;
 }
+.placeShipsInfo {
+    background-image: url("Images/war.png");
+    height: 275px;
+    background-size:275px;
+    background-repeat:no-repeat;
+    background-position:center;
+}
 .duel{
     background-image: url("Images/duel.png");
     height: 275px;
@@ -56,7 +63,7 @@
 .btn-36 {
     padding: 5px 15px;
     font-size: 16px;
-    height: 36px;
+    height: 36px !important;
 }
 
 .container-fluid {
@@ -509,7 +516,7 @@ body {
 }
 
 #shipYard {
-  height: 353px;
+  height: 363px;
   padding: 35px;
   border: solid 1px gray;
   border-radius: 6px;

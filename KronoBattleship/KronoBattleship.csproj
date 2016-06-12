@@ -272,6 +272,7 @@
     <Content Include="Content\Images\shipLong.png" />
     <Content Include="Content\Images\shipLongV.png" />
     <Content Include="Content\Images\swords.png" />
+    <Content Include="Content\Images\war.png" />
     <Content Include="Content\Images\water.jpg" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\themes\base\accordion.css" />
