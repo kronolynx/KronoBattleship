@@ -1,4 +1,5 @@
 ﻿using KronoBattleship.Datalayer;
+using KronoBattleship.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,12 @@ namespace KronoBattleship.Controllers
         public ActionResult About()
         {
             return View();
+        }
+
+        public ActionResult LeaderBoard()
+        {
+            var db = new ApplicationDbContext();
+            return View(UserViewModel.GetList(db.Users.ToList()));
         }
     }
 }

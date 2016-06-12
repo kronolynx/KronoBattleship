@@ -402,6 +402,7 @@
     <Content Include="Views\Chat\Index.cshtml" />
     <Content Include="Views\Chat\_UserList.cshtml" />
     <Content Include="Views\Battle\Index.cshtml" />
+    <Content Include="Views\Home\LeaderBoard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
