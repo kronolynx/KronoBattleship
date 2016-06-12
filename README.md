@@ -1,6 +1,8 @@
 
 
+
 <h1>Battleship</h1>
+<iframe width="420" height="315" src="https://www.youtube.com/embed/D27EePhuF_Y" frameborder="0" allowfullscreen></iframe>
 <h2><span class="mw-headline" id="Description">Requirements</span></h2>
 <ul>
     <li>User sign up, sign in, session management.</li>
@@ -51,16 +53,6 @@
     color peg (red for "hit", white for "miss"), in order to build up a picture of the opponent's fleet.</p>
 <p>When all of the squares of a ship have been hit, the ship is sunk, and the ship's owner announces this (e.g. "You sank my battleship!"). If all of a player's ships have been sunk, the game is over and their opponent wins.</p>
 
-888    d8P                                    888                            <br />
-888   d8P                                     888                            <br />
-888  d8P                                      888                            <br />
-888d88K     888d888 .d88b.  88888b.   .d88b.  888 888  888 88888b.  888  888 <br />
-8888888b    888P"  d88""88b 888 "88b d88""88b 888 888  888 888 "88b `Y8bd8P' <br />
-888  Y88b   888    888  888 888  888 888  888 888 888  888 888  888   X88K   <br />
-888   Y88b  888    Y88..88P 888  888 Y88..88P 888 Y88b 888 888  888 .d8""8b. <br />
-888    Y88b 888     "Y88P"  888  888  "Y88P"  888  "Y88888 888  888 888  888 <br />
-                                                       888                   <br />
-                                                  Y8b d88P                   <br />
-                                                   "Y88P"                    <br />
+
 
 
