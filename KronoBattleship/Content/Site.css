@@ -1,34 +1,36 @@
 ﻿body {
-	padding-top: 50px;
-	padding-bottom: 20px;
+    padding-top: 50px;
+    padding-bottom: 20px;
 }
 
 .navbar-default {
-	background-color: #3e3f3a;
-	border-color: #3e3f3a;
-	height:60px;
-    font-weight:500;
+    background-color: #3e3f3a;
+    border-color: #3e3f3a;
+    height: 60px;
+    font-weight: 500;
 }
-.navbar .nav>li>a {
-	font-size: 16px !important;
-	padding-top: 20px;
-    color:grey;
-    
+
+.navbar .nav > li > a {
+    font-size: 16px !important;
+    padding-top: 20px;
+    color: grey;
 }
-.navbar .nav>li>a:hover, .navbar .nav>li>a:active {
-	color:whitesmoke;
-}
+
+    .navbar .nav > li > a:hover, .navbar .nav > li > a:active {
+        color: whitesmoke;
+    }
+
 .navbar-default .navbar-brand {
-	color: #ffffff;
+    color: #ffffff;
     padding-top: 20px;
 }
 
 
 .homeJumbo {
-	margin-top: 40px;
-	background-image: url("Images/battleship.jpg");
-	background-size: cover;
-	height: 550px;
+    margin-top: 40px;
+    background-image: url("Images/battleship.jpg");
+    background-size: cover;
+    height: 550px;
 }
 
 
@@ -38,534 +40,537 @@
     background-color: #3e3f3a;
     font-size: 17px;
     font-weight: 500;
-    color:whitesmoke;
+    color: whitesmoke;
     text-shadow: 2px 2px 2px #333;
     background-image: url("Images/loginShip.png");
     background-size: cover;
-	background-repeat: no-repeat;
-}
-.loginRegister a{
-    font-size: 22px;
-    text-decoration: none;
-    color: whitesmoke;
-}
-.loginRegister a:hover{
-    font-size: 25px;
+    background-repeat: no-repeat;
 }
 
+    .loginRegister a {
+        font-size: 22px;
+        text-decoration: none;
+        color: whitesmoke;
+    }
+
+        .loginRegister a:hover {
+            font-size: 25px;
+        }
+
 .modal-dialog {
-	margin-top: 80px;
+    margin-top: 80px;
 }
 
 .fight-refused {
-	background-image: url("Images/swords.png");
-	height: 275px;
-	background-size: 275px;
-	background-repeat: no-repeat;
-	background-position: center;
+    background-image: url("Images/swords.png");
+    height: 275px;
+    background-size: 275px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .placeShipsInfo {
-	background-image: url("Images/war.png");
-	height: 275px;
-	background-size: 275px;
-	background-repeat: no-repeat;
-	background-position: center;
+    background-image: url("Images/war.png");
+    height: 275px;
+    background-size: 275px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .duel {
-	background-image: url("Images/duel.png");
-	height: 275px;
-	background-size: 275px;
-	background-repeat: no-repeat;
-	background-position: center;
+    background-image: url("Images/duel.png");
+    height: 275px;
+    background-size: 275px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .jumbotron h1 {
-	color: #fff;
-	text-shadow: 2px 2px #000;
-	text-align: center;
-	margin-bottom: 30px;
-	letter-spacing: -1px;
-	font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px #000;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: -1px;
+    font-weight: bold;
 }
 
 .btn {
-	border-radius: 6px;
-	font-size: 18px;
-	line-height: 1.33333;
-	padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 18px;
+    line-height: 1.33333;
+    padding: 10px 16px;
 }
 
 .btn-xs {
-	border: none;
-	line-height: 22px;
-	font-weight: 500;
-	text-transform: uppercase;
-	padding: 1px 5px;
-	font-size: 11px;
-	border-radius: 3px;
+    border: none;
+    line-height: 22px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 1px 5px;
+    font-size: 11px;
+    border-radius: 3px;
 }
 
 .btn-36 {
-	padding: 5px 15px;
-	font-size: 16px;
-	height: 36px !important;
+    padding: 5px 15px;
+    font-size: 16px;
+    height: 36px !important;
 }
 
 .container-fluid {
-	padding: 0 37px;
+    padding: 0 37px;
 }
 /* Set padding to keep content from hitting the edges */
 .body-content {
-	min-width: 464px;
-	padding-left: 15px;
-	padding-right: 15px;
-	margin-top: 50px;
+    min-width: 464px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 50px;
 }
 
 .navbar .nav > li > a {
-	font-size: 15px;
+    font-size: 15px;
 }
 
 .navbar-brand {
-	font-size: 28px;
+    font-size: 28px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
 .dl-horizontal dt {
-	white-space: normal;
+    white-space: normal;
 }
 
 
 /* from sass to css site */
 
 body {
-	background-image: url("Images/bg.png");
-	background-repeat: repeat;
+    background-image: url("Images/bg.png");
+    background-repeat: repeat;
 }
 
 .chat-history {
-	background-image: url("Images/chat-bg.png");
-	background-repeat: repeat;
+    background-image: url("Images/chat-bg.png");
+    background-repeat: repeat;
 }
 
 .table th, td {
-	text-align: center;
+    text-align: center;
 }
 
 .profile-view {
-	height: 280px;
-	min-width: 700px;
-	max-width: 900px;
-	margin-left: auto;
-	margin-right: auto;
+    height: 280px;
+    min-width: 700px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-	.profile-view .profile-image {
-		display: block;
-		width: 258px;
-		float: left;
-	}
+    .profile-view .profile-image {
+        display: block;
+        width: 258px;
+        float: left;
+    }
 
-	.profile-view .profile-stats {
-		display: block;
-		width: 450px;
-		float: left;
-		padding: 20px;
-	}
+    .profile-view .profile-stats {
+        display: block;
+        width: 450px;
+        float: left;
+        padding: 20px;
+    }
 
 .controls {
-	padding-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 .zero-padding-left {
-	padding-left: 0;
+    padding-left: 0;
 }
 
 .lose {
-	width: 496px;
+    width: 496px;
 }
 
 .win {
-	width: 413px;
+    width: 413px;
 }
 
 .end-game {
-	height: auto;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 100px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
 }
 
-	.end-game .gameover {
-		width: 496px;
-		height: 275px;
-		background-image: url("Images/gameover.png");
-		background-repeat: no-repeat;
-	}
+    .end-game .gameover {
+        width: 496px;
+        height: 275px;
+        background-image: url("Images/gameover.png");
+        background-repeat: no-repeat;
+    }
 
-	.end-game .winner {
-		width: 413px;
-		height: 346px;
-		background-image: url("Images/medal.png");
-		background-repeat: no-repeat;
-	}
+    .end-game .winner {
+        width: 413px;
+        height: 346px;
+        background-image: url("Images/medal.png");
+        background-repeat: no-repeat;
+    }
 
 .close {
-	background: #606061;
-	color: #FFFFFF;
-	text-align: center;
-	float: right;
-	text-decoration: none;
-	font-weight: bold;
-	border-radius: 15px;
-	padding: 2px;
-	box-shadow: 1px 1px 3px #000;
+    background: #606061;
+    color: #FFFFFF;
+    text-align: center;
+    float: right;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 15px;
+    padding: 2px;
+    box-shadow: 1px 1px 3px #000;
 }
 
-	.close:hover {
-		background: #00d9ff;
-	}
+    .close:hover {
+        background: #00d9ff;
+    }
 
 #info-div {
-	width: 400px;
-	margin: 7px;
+    width: 400px;
+    margin: 7px;
 }
 
-	#info-div #btnGiveUp {
-		float: right;
-	}
+    #info-div #btnGiveUp {
+        float: right;
+    }
 
-	#info-div #messages {
-		width: 310px;
-		float: left;
-		height: 36px;
-		border-radius: 3%;
-		text-align: center;
-		padding-top: 5px;
-		font-size: large;
-		color: #92959E;
-	}
+    #info-div #messages {
+        width: 310px;
+        float: left;
+        height: 36px;
+        border-radius: 3%;
+        text-align: center;
+        padding-top: 5px;
+        font-size: large;
+        color: #92959E;
+    }
 
 .nav.navbar-right li .btn {
-	color: #fff !important;
-	margin-top: 9%;
+    color: #fff !important;
+    margin-top: 9%;
 }
 
 .nav.navbar-right li .btn-danger:hover {
-	background-color: #a02622 !important;
+    background-color: #a02622 !important;
 }
 
 .round-image-40 {
-	background-color: white;
-	border: 1px solid #d9d9d9;
-	border-radius: 25px;
-	-moz-border-radius: 25px;
-	-webkit-border-radius: 25px;
-	height: 40px;
-	width: 40px;
-	overflow: hidden;
-	text-align: center;
-	padding-right: 1px;
+    background-color: white;
+    border: 1px solid #d9d9d9;
+    border-radius: 25px;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
+    text-align: center;
+    padding-right: 1px;
 }
 
-	.round-image-40 img {
-		width: 100%;
-	}
+    .round-image-40 img {
+        width: 100%;
+    }
 
 .nav-padding {
-	margin-top: 11px;
+    margin-top: 11px;
 }
 
 .listing {
-	list-style: none;
-	padding-left: 0;
+    list-style: none;
+    padding-left: 0;
 }
+
 
 .people-list {
-	/*width: 260px;*/
-	width: 100%;
-	float: left;
+    /*width: 260px;*/
+    width: 100%;
+    float: left;
     margin-top: 7px;
-    height: 775px;
-	overflow-y: scroll;
-	margin-bottom: 25px;
-	background: #444753;
-	border-radius: 5px;
-	color: white;
+    height: 776px;
+    overflow-y: auto;
+    margin-bottom: 25px;
+    background: #444753;
+    border-radius: 5px;
+    color: white;
 }
 
-	.people-list *, .people-list *:before, .people-list *:after {
-		box-sizing: border-box;
-	}
+    .people-list *, .people-list *:before, .people-list *:after {
+        box-sizing: border-box;
+    }
 
-	.people-list .search {
-		padding: 20px;
-	}
+    .people-list .search {
+        padding: 20px;
+    }
 
-	.people-list input {
-		border-radius: 3px;
-		border: none;
-		padding: 14px;
-		color: white;
-		background: #6A6C75;
-		width: 90%;
-		font-size: 14px;
-	}
+    .people-list input {
+        border-radius: 3px;
+        border: none;
+        padding: 14px;
+        color: white;
+        background: #6A6C75;
+        width: 90%;
+        font-size: 14px;
+    }
 
-	.people-list .fa-search {
-		position: relative;
-		left: -25px;
-	}
+    .people-list .fa-search {
+        position: relative;
+        left: -25px;
+    }
 
-	.people-list ul {
-		padding: 20px;
-		height: 770px;
-	}
+    .people-list ul {
+        padding: 20px;
+        height: 760px;
+    }
 
-		.people-list ul li {
-			padding-bottom: 20px;
-			list-style: none;
-		}
+        .people-list ul li {
+            padding-bottom: 20px;
+            list-style: none;
+        }
 
-	.people-list img {
-		float: left;
-	}
+    .people-list img {
+        float: left;
+    }
 
-	.people-list .about {
-		float: left;
-		margin-top: 8px;
-	}
+    .people-list .about {
+        float: left;
+        margin-top: 8px;
+    }
 
-	.people-list .about {
-		padding-left: 8px;
-	}
+    .people-list .about {
+        padding-left: 8px;
+    }
 
-	.people-list .status {
-		color: #92959E;
-	}
+    .people-list .status {
+        color: #92959E;
+    }
 
 /* chat */
 .chat {
-	margin-top: 7px;
-	float: left;
-	width: 100%;
-	background: #EEEEEE; /*#f5f5f5;*/
-	border-radius: 4px;
-	border: 1px solid #ccc;
-	color: #434651;
-	height: 777px;
+    margin-top: 7px;
+    float: left;
+    width: 100%;
+    background: #EEEEEE; /*#f5f5f5;*/
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    color: #434651;
+    height: 777px;
 }
 
-	.chat li {
-		list-style: none;
-	}
+    .chat li {
+        list-style: none;
+    }
 
 .chat-header {
-	padding: 20px;
-	border-bottom: 2px solid white;
+    padding: 20px;
+    border-bottom: 2px solid white;
 }
 
-	.chat-header img {
-		float: left;
-	}
+    .chat-header img {
+        float: left;
+    }
 
-	.chat-header .chat-about {
-		float: left;
-		padding-left: 10px;
-		margin-top: 6px;
-	}
+    .chat-header .chat-about {
+        float: left;
+        padding-left: 10px;
+        margin-top: 6px;
+    }
 
-	.chat-header .chat-with {
-		font-weight: bold;
-		font-size: 16px;
-	}
+    .chat-header .chat-with {
+        font-weight: bold;
+        font-size: 16px;
+    }
 
-	.chat-header .chat-num-messages {
-		color: #92959E;
-	}
+    .chat-header .chat-num-messages {
+        color: #92959E;
+    }
 
 .chat .chat-header .fa-star {
-	float: right;
-	color: rebeccapurple;
-	font-size: 20px;
-	margin-top: 12px;
+    float: right;
+    color: rebeccapurple;
+    font-size: 20px;
+    margin-top: 12px;
 }
 
 .chat-history {
-	padding: 30px 20px 20px 0px;
-	border-bottom: 2px solid white;
-	overflow-y: scroll;
-	height: 575px;
+    padding: 30px 20px 20px 0px;
+    border-bottom: 2px solid white;
+    overflow-y: auto;
+    height: 575px;
 }
 
-	.chat-history .message-data {
-		margin-bottom: 15px;
-	}
+    .chat-history .message-data {
+        margin-bottom: 15px;
+    }
 
-	.chat-history .message-data-time {
-		color: #a8aab1;
-		padding-left: 6px;
-	}
+    .chat-history .message-data-time {
+        color: #a8aab1;
+        padding-left: 6px;
+    }
 
-	.chat-history .message {
-		color: white;
-		padding: 10px 20px;
-		line-height: 26px;
-		font-size: 16px;
-		border-radius: 7px;
-		margin-bottom: 30px;
-		width: 90%;
-		position: relative;
-	}
+    .chat-history .message {
+        color: white;
+        padding: 10px 20px;
+        line-height: 26px;
+        font-size: 16px;
+        border-radius: 7px;
+        margin-bottom: 30px;
+        width: 90%;
+        position: relative;
+    }
 
-		.chat-history .message:after {
-			bottom: 100%;
-			left: 7%;
-			border: solid transparent;
-			content: " ";
-			height: 0;
-			width: 0;
-			position: absolute;
-			pointer-events: none;
-			border-bottom-color: #86BB71;
-			border-width: 10px;
-			margin-left: -10px;
-		}
+        .chat-history .message:after {
+            bottom: 100%;
+            left: 7%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+            border-bottom-color: #86BB71;
+            border-width: 10px;
+            margin-left: -10px;
+        }
 
 .chat .chat-history .my-message {
-	background: #86BB71;
+    background: #86BB71;
 }
 
 .chat .chat-history .other-message {
-	background: #94C2ED;
+    background: #94C2ED;
 }
 
-	.chat .chat-history .other-message:after {
-		border-bottom-color: #94C2ED;
-		left: 93%;
-	}
+    .chat .chat-history .other-message:after {
+        border-bottom-color: #94C2ED;
+        left: 93%;
+    }
 
 .chat .chat-message {
-	padding: 2px 10px;
+    padding: 2px 10px;
 }
 
-	.chat .chat-message textarea {
-		padding: 10px 20px;
-		font: 14px/22px "Lato", Arial, sans-serif;
-		margin-bottom: 10px;
-		border-radius: 5px;
-		resize: none;
-	}
+    .chat .chat-message textarea {
+        padding: 10px 20px;
+        font: 14px/22px "Lato", Arial, sans-serif;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        resize: none;
+    }
 
-	.chat .chat-message .fa-file-o, .chat .chat-message .fa-file-image-o {
-		font-size: 16px;
-		color: gray;
-		cursor: pointer;
-	}
+    .chat .chat-message .fa-file-o, .chat .chat-message .fa-file-image-o {
+        font-size: 16px;
+        color: gray;
+        cursor: pointer;
+    }
 
-	.chat .chat-message input[type=submit] {
-		float: right;
-		color: #94C2ED;
-		font-size: 16px;
-		text-transform: uppercase;
-		border: none;
-		cursor: pointer;
-		font-weight: bold;
-		background: #F2F5F8;
-	}
+    .chat .chat-message input[type=submit] {
+        float: right;
+        color: #94C2ED;
+        font-size: 16px;
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        background: #F2F5F8;
+    }
 
-		.chat .chat-message input[type=submit]:hover {
-			color: #75b1e8;
-		}
+        .chat .chat-message input[type=submit]:hover {
+            color: #75b1e8;
+        }
 
 .online, .offline, .me {
-	margin-right: 3px;
-	font-size: 10px;
+    margin-right: 3px;
+    font-size: 10px;
 }
 
 .online {
-	color: #86BB71;
+    color: #86BB71;
 }
 
 .offline {
-	color: #E38968;
+    color: #E38968;
 }
 
 .me {
-	color: #94C2ED;
+    color: #94C2ED;
 }
 
 .align-left {
-	text-align: left;
+    text-align: left;
 }
 
 .align-right {
-	text-align: right;
+    text-align: right;
 }
 
 .float-right {
-	float: right;
+    float: right;
 }
 
 .float-left {
-	float: left;
+    float: left;
 }
 
 .clearfix:after {
-	visibility: hidden;
-	display: block;
-	font-size: 0;
-	content: " ";
-	clear: both;
-	height: 0;
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
 }
 
 .start-battle {
-	margin-left: 15px;
-	margin-top: 8px;
+    margin-left: 15px;
+    margin-top: 8px;
 }
 
 
 /*** new chat *****/
 
 .write-form {
-	height: 150px;
+    height: 150px;
 }
 
-	.write-form textarea {
-		height: 89px;
-		margin: 12px 2%;
-		width: 96%;
-		outline: none;
-		padding: 15px;
-		border: none;
-		border-radius: 3px;
-		resize: none;
-	}
+    .write-form textarea {
+        height: 89px;
+        margin: 12px 2%;
+        width: 96%;
+        outline: none;
+        padding: 15px;
+        border: none;
+        border-radius: 3px;
+        resize: none;
+    }
 
-		.write-form textarea:before {
-			content: '';
-			clear: both;
-		}
+        .write-form textarea:before {
+            content: '';
+            clear: both;
+        }
 
 .send {
-	color: #7ac5ef;
-	text-transform: uppercase;
-	font-weight: 700;
-	float: right;
-	margin-right: 5%;
-	cursor: pointer;
-	user-select: none;
+    color: #7ac5ef;
+    text-transform: uppercase;
+    font-weight: 700;
+    float: right;
+    margin-right: 5%;
+    cursor: pointer;
+    user-select: none;
 }
 
 .chat-body {
-	width: 100%;
-	height: 530px;
-	overflow-y: hidden;
+    width: 100%;
+    height: 530px;
+    overflow-y: hidden;
 }
 
 
@@ -573,320 +578,320 @@ body {
 
 /********************************* from battle  ***********************************/
 .board {
-	border-radius: 4px;
-	font-weight: bold;
-	z-index: -50;
-	float: left;
-	/*display: inline-block;*/
-	width: 400px;
-	height: 400px;
-	margin: 7px;
-	background-image: url("Images/water.jpg");
-	background-size: cover;
-	background-position: 0px 0px;
-	background-repeat: repeat-x;
-	animation: animatedBackground 50s linear infinite;
+    border-radius: 4px;
+    font-weight: bold;
+    z-index: -50;
+    float: left;
+    /*display: inline-block;*/
+    width: 400px;
+    height: 400px;
+    margin: 7px;
+    background-image: url("Images/water.jpg");
+    background-size: cover;
+    background-position: 0px 0px;
+    background-repeat: repeat-x;
+    animation: animatedBackground 50s linear infinite;
 }
 
 @keyframes animatedBackground {
-	from {
-		background-position: 0 0;
-	}
+    from {
+        background-position: 0 0;
+    }
 
-	to {
-		background-position: 100% 0;
-	}
+    to {
+        background-position: 100% 0;
+    }
 }
 
 .seaBox {
-	float: left;
-	width: 40px;
-	height: 40px;
-	border: .7px solid white;
+    float: left;
+    width: 40px;
+    height: 40px;
+    border: .7px solid white;
 }
 
 #shipSelection {
-	margin-top: 7px;
-	width: 338px;
-	float: left;
+    margin-top: 7px;
+    width: 338px;
+    float: left;
 }
 
 #shipYard {
-	height: 363px;
-	padding: 35px;
-	border: solid 1px gray;
-	border-radius: 6px;
-	background-image: url("Images/water.jpg");
-	background-size: cover;
-	background-position: 0px 0px;
-	background-repeat: repeat-x;
-	animation: animatedBackground 50s linear infinite;
-	/*background-color: rgba(198, 213, 226, .5); */
+    height: 363px;
+    padding: 35px;
+    border: solid 1px gray;
+    border-radius: 6px;
+    background-image: url("Images/water.jpg");
+    background-size: cover;
+    background-position: 0px 0px;
+    background-repeat: repeat-x;
+    animation: animatedBackground 50s linear infinite;
+    /*background-color: rgba(198, 213, 226, .5); */
 }
 
 /** ships **/
 #draggable {
-	float: left;
-	width: 20px;
-	height: 20px;
-	background-color: black;
+    float: left;
+    width: 20px;
+    height: 20px;
+    background-color: black;
 }
 
 /** 5 cells **/
 #aircraft {
-	width: 200px;
-	background: url("Images/shipLong.png");
-	background-repeat: no-repeat;
-	background-position: bottom;
-	background-size: cover;
+    width: 200px;
+    background: url("Images/shipLong.png");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
 }
 
 #aircraftV {
-	height: 200px;
-	width: 40px;
-	background: url("Images/shipLongV.png");
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: 0;
+    height: 200px;
+    width: 40px;
+    background: url("Images/shipLongV.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 0;
 }
 
 /** 3 cells **/
 #cruiser1 {
-	width: 120px;
-	background: url("Images/ship3.png");
-	background-repeat: no-repeat;
-	background-position: bottom;
-	background-size: cover;
+    width: 120px;
+    background: url("Images/ship3.png");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
 }
 
 #cruiser1V {
-	height: 120px;
-	width: 40px;
-	background: url("Images/ship3v.png");
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: 0;
+    height: 120px;
+    width: 40px;
+    background: url("Images/ship3v.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 0;
 }
 
 /** 3 cells **/
 #cruiser2 {
-	width: 120px;
-	background: url("Images/ship1.png");
-	background-repeat: no-repeat;
-	background-position: bottom;
-	background-size: cover;
+    width: 120px;
+    background: url("Images/ship1.png");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
 }
 
 #cruiser2V {
-	height: 120px;
-	width: 40px;
-	background: url("Images/ship1v.png");
-	background-repeat: no-repeat;
-	background-position: 0;
-	background-size: contain;
+    height: 120px;
+    width: 40px;
+    background: url("Images/ship1v.png");
+    background-repeat: no-repeat;
+    background-position: 0;
+    background-size: contain;
 }
 
 /** 2 cells **/
 #destroyer1 {
-	width: 79px;
-	background: url("Images/ship2.png");
-	background-repeat: no-repeat;
-	background-position: 0;
-	background-size: contain;
+    width: 79px;
+    background: url("Images/ship2.png");
+    background-repeat: no-repeat;
+    background-position: 0;
+    background-size: contain;
 }
 
 #destroyer1V {
-	height: 79px;
-	width: 40px;
-	background: url("Images/ship2v.png");
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: 0;
+    height: 79px;
+    width: 40px;
+    background: url("Images/ship2v.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 0;
 }
 
 #destroyer2 {
-	width: 79px;
-	background: url("Images/ship4.png");
-	background-repeat: no-repeat;
-	background-position: 0;
-	background-size: contain;
+    width: 79px;
+    background: url("Images/ship4.png");
+    background-repeat: no-repeat;
+    background-position: 0;
+    background-size: contain;
 }
 
 #destroyer2V {
-	height: 79px;
-	width: 40px;
-	background: url("Images/ship4v.png");
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: 0;
+    height: 79px;
+    width: 40px;
+    background: url("Images/ship4v.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 0;
 }
 
 .ship {
-	position: absolute;
-	height: 40px;
-	padding: 0;
-	background-color: black;
+    position: absolute;
+    height: 40px;
+    padding: 0;
+    background-color: black;
 }
 
 .explosion {
-	position: absolute;
-	margin-left: 10px;
-	height: 24px;
-	width: 24px;
-	background-image: url("Images/explosion.gif");
-	background-size: contain;
-	z-index: 1 !important;
+    position: absolute;
+    margin-left: 10px;
+    height: 24px;
+    width: 24px;
+    background-image: url("Images/explosion.gif");
+    background-size: contain;
+    z-index: 1 !important;
 }
 
 /** clear **/
 .spacer {
-	display: block;
-	clear: both;
-	height: 60px;
+    display: block;
+    clear: both;
+    height: 60px;
 }
 
 /** enemy board **/
 .hole {
-	position: relative;
-	display: table;
-	width: 10px;
-	height: 10px;
-	margin: 14px;
-	border: 1px solid white;
-	border-radius: 50%;
+    position: relative;
+    display: table;
+    width: 10px;
+    height: 10px;
+    margin: 14px;
+    border: 1px solid white;
+    border-radius: 50%;
 }
 
 .highlight {
-	background: rgba(144, 144, 144, 0.9);
+    background: rgba(144, 144, 144, 0.9);
 }
 
 .target {
-	background: rgba(250, 10, 10, 0.7);
+    background: rgba(250, 10, 10, 0.7);
 }
 
 .hit {
-	position: relative;
-	top: 5px;
-	left: 5px;
-	display: table;
-	overflow: hidden;
-	width: 15px;
-	height: 15px;
-	margin: 7px;
-	-webkit-animation-name: expand;
-	-moz-animation-name: expand;
-	animation-name: expand;
-	-webkit-animation-duration: .5s;
-	-moz-animation-duration: .5s;
-	animation-duration: .5s;
-	-webkit-animation-timing-function: linear;
-	-moz-animation-timing-function: linear;
-	animation-timing-function: linear;
-	-webkit-animation-iteration-count: 1;
-	-moz-animation-iteration-count: 1;
-	animation-iteration-count: 1;
-	border: 1px solid red;
-	border-radius: 100%;
-	background: #dc0a0a;
-	animation-fill-mode: none;
-	-webkit-animation-fill-mode: none;
-	-moz-animation-fill-mode: none;
+    position: relative;
+    top: 5px;
+    left: 5px;
+    display: table;
+    overflow: hidden;
+    width: 15px;
+    height: 15px;
+    margin: 7px;
+    -webkit-animation-name: expand;
+    -moz-animation-name: expand;
+    animation-name: expand;
+    -webkit-animation-duration: .5s;
+    -moz-animation-duration: .5s;
+    animation-duration: .5s;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    -moz-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    border: 1px solid red;
+    border-radius: 100%;
+    background: #dc0a0a;
+    animation-fill-mode: none;
+    -webkit-animation-fill-mode: none;
+    -moz-animation-fill-mode: none;
 }
 
 .miss {
-	position: relative;
-	top: 5px;
-	left: 5px;
-	display: table;
-	overflow: hidden;
-	width: 15px;
-	height: 15px;
-	margin: 7px;
-	-webkit-animation: expand;
-	-moz-animation: expand;
-	animation: expand;
-	-webkit-animation-duration: .5s;
-	-moz-animation-duration: .5s;
-	animation-duration: .5s;
-	-webkit-animation-timing-function: linear;
-	-moz-animation-timing-function: linear;
-	animation-timing-function: linear;
-	-webkit-animation-iteration-count: 1;
-	-moz-animation-iteration-count: 1;
-	animation-iteration-count: 1;
-	border: 1px solid white;
-	border-radius: 100%;
-	background: #fafafa;
-	animation-fill-mode: none;
-	-webkit-animation-fill-mode: none;
-	-moz-animation-fill-mode: none;
+    position: relative;
+    top: 5px;
+    left: 5px;
+    display: table;
+    overflow: hidden;
+    width: 15px;
+    height: 15px;
+    margin: 7px;
+    -webkit-animation: expand;
+    -moz-animation: expand;
+    animation: expand;
+    -webkit-animation-duration: .5s;
+    -moz-animation-duration: .5s;
+    animation-duration: .5s;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    -moz-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    border: 1px solid white;
+    border-radius: 100%;
+    background: #fafafa;
+    animation-fill-mode: none;
+    -webkit-animation-fill-mode: none;
+    -moz-animation-fill-mode: none;
 }
 
 @keyframes expand {
-	0% {
-		top: 12.5px;
-		left: 12.5px;
-		width: 0;
-		height: 0;
-	}
+    0% {
+        top: 12.5px;
+        left: 12.5px;
+        width: 0;
+        height: 0;
+    }
 
-	50% {
-		top: 0;
-		left: 0;
-		width: 25px;
-		height: 25px;
-	}
+    50% {
+        top: 0;
+        left: 0;
+        width: 25px;
+        height: 25px;
+    }
 
-	100% {
-		top: 5px;
-		left: 5px;
-		width: 15px;
-		height: 15px;
-	}
+    100% {
+        top: 5px;
+        left: 5px;
+        width: 15px;
+        height: 15px;
+    }
 }
 
 @-webkit-keyframes expand {
-	0% {
-		top: 12.5px;
-		left: 12.5px;
-		width: 0;
-		height: 0;
-	}
+    0% {
+        top: 12.5px;
+        left: 12.5px;
+        width: 0;
+        height: 0;
+    }
 
-	50% {
-		top: 0;
-		left: 0;
-		width: 25px;
-		height: 25px;
-	}
+    50% {
+        top: 0;
+        left: 0;
+        width: 25px;
+        height: 25px;
+    }
 
-	100% {
-		top: 5px;
-		left: 5px;
-		width: 15px;
-		height: 15px;
-	}
+    100% {
+        top: 5px;
+        left: 5px;
+        width: 15px;
+        height: 15px;
+    }
 }
 
 @-moz-keyframes expand {
-	0% {
-		top: 12.5px;
-		left: 12.5px;
-		width: 0;
-		height: 0;
-	}
+    0% {
+        top: 12.5px;
+        left: 12.5px;
+        width: 0;
+        height: 0;
+    }
 
-	50% {
-		top: 0;
-		left: 0;
-		width: 25px;
-		height: 25px;
-	}
+    50% {
+        top: 0;
+        left: 0;
+        width: 25px;
+        height: 25px;
+    }
 
-	100% {
-		top: 5px;
-		left: 5px;
-		width: 15px;
-		height: 15px;
-	}
+    100% {
+        top: 5px;
+        left: 5px;
+        width: 15px;
+        height: 15px;
+    }
 }
